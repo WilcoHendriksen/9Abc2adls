@@ -139,6 +139,21 @@ page 82561 "ADLSE Setup Tables"
                 end;
             }
 
+            action(Import)
+            {
+                ApplicationArea = All;
+                Caption = 'Import configuration';
+                Tooltip = 'Import tables and field that need to be exported';
+                Image = Import;
+
+                trigger OnAction()
+                var
+                    ImportConfig: Codeunit "ADLSE Import config";
+                begin
+                    ImportConfig.Import()
+                end;
+            }
+
             action(Reset)
             {
                 ApplicationArea = All;
@@ -171,7 +186,19 @@ page 82561 "ADLSE Setup Tables"
                     ADLSERun.SetDisplayForTable(Rec."Table ID");
                     ADLSERun.Run();
                 end;
+            }
 
+            action(RefreshPage)
+            {
+                ApplicationArea = All;
+                Caption = 'Refresh';
+                Tooltip = 'Refreshes the table values.';
+                Image = Refresh;
+
+                trigger OnAction()
+                begin
+                    CurrPage.Update();
+                end;
             }
         }
     }
