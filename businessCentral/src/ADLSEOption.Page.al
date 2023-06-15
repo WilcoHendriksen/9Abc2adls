@@ -17,7 +17,7 @@ page 82575 "ADLSE Option"
                 {
                     ApplicationArea = All;
                     Caption = 'Language codes';
-                    Tooltip = 'The language codes for which the option table will be filled. The codes need to comma seperated and can be found in the language table.';
+                    Tooltip = 'The language codes for which the option table will be filled. The codes need to be comma seperated and can be found in the language table.';
                     Editable = true;
                 }
             }

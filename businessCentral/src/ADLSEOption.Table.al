@@ -2,6 +2,7 @@ table 82567 "ADLSE Option"
 {
     Caption = 'ADLSE Option';
     DataClassification = ToBeClassified;
+    DataPerCompany = false;
 
     fields
     {
