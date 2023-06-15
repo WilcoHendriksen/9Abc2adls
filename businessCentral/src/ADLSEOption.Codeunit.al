@@ -45,8 +45,8 @@ codeunit 82575 "ADLSE Option"
                                 ADLSEOption.Table := Field.TableName;
                                 ADLSEOption.Field := Field.FieldName;
                                 ADLSEOption.FieldCaption := FieldCaption;
-                                ADLSEOption.OptionMembers := OptionMembers.Get(i);
-                                ADLSEOption.OptionCaptions := OptionCaptions.Get(i);
+                                ADLSEOption.OptionMember := OptionMembers.Get(i);
+                                ADLSEOption.OptionCaption := OptionCaptions.Get(i);
                                 ADLSEOption.Insert();
                             End;
 
@@ -55,25 +55,6 @@ codeunit 82575 "ADLSE Option"
                 end;
             until ADLSETable.Next = 0;
         end;
-    end;
-
-    /// <summary>
-    ///     Concatenate a list of [Text] into a single string "value1,value2,value3"
-    /// </summary>
-    /// <param name="ListOfText"></param>
-    /// <returns>A single line of Text</returns>
-    local procedure Concat(ListOfText: List of [Text]): Text
-    var
-        String: Text;
-        Result: Text;
-        i: Integer;
-    begin
-        for i := 1 to ListOfText.Count do begin
-            if i <> 1 then
-                Result += ',';
-            Result += ListOfText.Get(i);
-        end;
-        exit(Result);
     end;
 
     /// <summary>

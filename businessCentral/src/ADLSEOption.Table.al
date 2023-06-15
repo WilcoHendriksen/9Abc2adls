@@ -26,20 +26,20 @@ table 82567 "ADLSE Option"
             Caption = 'FieldCaption';
             DataClassification = ToBeClassified;
         }
-        field(5; "OptionMembers"; Text[2048])
+        field(5; "OptionMember"; Text[100])
         {
-            Caption = 'OptionMembers';
+            Caption = 'OptionMember';
             DataClassification = ToBeClassified;
         }
-        field(6; "OptionCaptions"; Text[2048])
+        field(6; "OptionCaption"; Text[100])
         {
-            Caption = 'OptionCaptions';
+            Caption = 'OptionCaption';
             DataClassification = ToBeClassified;
         }
     }
     keys
     {
-        key(PK; "LanguageCode", "Table", "Field", "OptionMembers")
+        key(PK; "LanguageCode", "Table", "Field", "OptionMember")
         {
             Clustered = true;
         }
