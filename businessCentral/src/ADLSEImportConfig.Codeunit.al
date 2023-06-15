@@ -16,6 +16,7 @@ codeunit 82574 "ADLSE Import config"
         CouldNotReadColumns: Label 'Could not read property "ColumnNames".\';
         ColumnIsNotFound: Label 'Column "%1"."%2" is not found.\';
         TableIsNotFound: Label 'Table "%1" is not found.\';
+        ProgressText: Label 'Importing #1\#2';
 
     /// <summary>
     ///     Import tables and columns from a json file
@@ -39,8 +40,8 @@ codeunit 82574 "ADLSE Import config"
         ALDSEField: Record "ADLSE Field";
         TableTable: Record "Table Metadata";
         FieldTable: Record "Field";
-        ProgressText: Label 'Importing #1';
         Errors: Text;
+        ProgressUpdate: Text;
     begin
         // are you sure? dialog
         if not Dialog.Confirm(ConfirmImport) then
@@ -67,43 +68,46 @@ codeunit 82574 "ADLSE Import config"
             Error(TableDefIsNotAnArray);
 
         // open progress dialog
-        Progress.Open(ProgressText, TableNameToken);
+        ProgressUpdate := Format(i) + ' of ' + Format(JsonTableDefinitionsToken.AsArray().Count);
+        Progress.Open(ProgressText, ProgressUpdate, TableNameToken);
 
-        // itterate over table definitions        
-        foreach JsonTableDefinitionToken in JsonTableDefinitionsToken.AsArray() do begin
-            if not JsonTableDefinitionToken.SelectToken('TableName', TableNameToken) then
-                Errors += CouldNotReadTableName;
+        // itterate over table definitions
+        for i := 1 to JsonTableDefinitionsToken.AsArray().Count do begin
+            if JsonTableDefinitionsToken.AsArray().Get(i, JsonTableDefinitionToken) then begin
+                if not JsonTableDefinitionToken.SelectToken('TableName', TableNameToken) then
+                    Errors += CouldNotReadTableName;
 
-            // update the dialog with the new table name
-            Progress.Update();
-            TableName := TableNameToken.AsValue().AsText();
-            TableTable.SetRange(Name, TableName);
-            if (StrLen(TableName) > 0) and TableTable.FindSet() then begin
-                // if the table is found add it
-                ALDSETable.Add(TableTable.ID);
-                ALDSETable.Get(TableTable.ID);
-                // add all fields in the field table, but they are still disabled
-                ALDSEField.InsertForTable(ALDSETable);
-                // iterate over the columns
-                if JsonTableDefinitionToken.SelectToken('ColumnNames', ColumnNamesToken) then
-                    foreach ColumnNameToken in ColumnNamesToken.AsArray() do begin
-                        ColumnName := ColumnNameToken.AsValue().AsText();
-                        ALDSEField.SetRange(FieldCaption, ColumnName);
-                        ALDSEField.SetRange("Table ID", TableTable.ID);
-                        if (StrLen(ColumnName) > 0) and ALDSEField.FindSet() then begin
-                            // if the column is found enabled it
-                            ALDSEField.Enabled := true;
-                            ALDSEField.Modify();
+                // update the dialog with the new table name
+                ProgressUpdate := Format(i) + ' of ' + Format(JsonTableDefinitionsToken.AsArray().Count);
+                Progress.Update();
+                TableName := TableNameToken.AsValue().AsText();
+                TableTable.SetRange(Name, TableName);
+                if (StrLen(TableName) > 0) and TableTable.FindSet() then begin
+                    // if the table is found add it
+                    ALDSETable.Add(TableTable.ID);
+                    ALDSETable.Get(TableTable.ID);
+                    // add all fields in the field table, but they are still disabled
+                    ALDSEField.InsertForTable(ALDSETable);
+                    // iterate over the columns
+                    if JsonTableDefinitionToken.SelectToken('ColumnNames', ColumnNamesToken) then
+                        foreach ColumnNameToken in ColumnNamesToken.AsArray() do begin
+                            ColumnName := ColumnNameToken.AsValue().AsText();
+                            ALDSEField.SetRange(FieldCaption, ColumnName);
+                            ALDSEField.SetRange("Table ID", TableTable.ID);
+                            if (StrLen(ColumnName) > 0) and ALDSEField.FindSet() then begin
+                                // if the column is found enabled it
+                                ALDSEField.Enabled := true;
+                                ALDSEField.Modify();
+                            end
+                            else
+                                Errors += StrSubstNo(ColumnIsNotFound, TableName, ColumnName);
                         end
-                        else
-                            Errors += StrSubstNo(ColumnIsNotFound, TableName, ColumnName);
-                    end
+                    else
+                        Errors += CouldNotReadColumns;
+                end
                 else
-                    Errors += CouldNotReadColumns;
-            end
-            else
-                Errors += StrSubstNo(TableIsNotFound, TableName);
-
+                    Errors += StrSubstNo(TableIsNotFound, TableName);
+            end;
         end;
         Progress.Close();
 
