@@ -224,6 +224,25 @@ page 82560 "ADLSE Setup"
                     CurrPage.Update();
                 end;
             }
+
+            action(FillOptionTable)
+            {
+                ApplicationArea = All;
+                Caption = 'Refresh enumerations';
+                Tooltip = 'Fills the ADLSE option table, which then can be used to export enumerations';
+                Promoted = true;
+                PromotedIsBig = true;
+                PromotedCategory = Process;
+                PromotedOnly = true;
+                Image = Export;
+
+                trigger OnAction()
+                var
+                    ADLSEOption: Page "ADLSE Option";
+                begin
+                    ADLSEOption.Run();
+                end;
+            }
         }
     }
     var
