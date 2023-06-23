@@ -185,6 +185,25 @@ page 82560 "ADLSE Setup"
                 end;
             }
 
+            action(ScheduleMultiCompany)
+            {
+                ApplicationArea = All;
+                Caption = 'Schedule Multi Company';
+                Tooltip = 'Schedules the export process as a job queue entry for mulitple companies';
+                Promoted = true;
+                PromotedIsBig = true;
+                PromotedCategory = Process;
+                PromotedOnly = true;
+                Image = Timesheet;
+
+                trigger OnAction()
+                var
+                    "ADLSESchedule": Page "ADLSE Schedule";
+                begin
+                    ADLSESchedule.Run();
+                end;
+            }
+
             action(ClearDeletedRecordsList)
             {
                 ApplicationArea = All;
