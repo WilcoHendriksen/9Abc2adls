@@ -5,7 +5,7 @@ codeunit 82574 "ADLSE Import/Export config"
     Access = Internal;
 
     var
-        SuccessfulExport: Label 'Successfully exported config.json!';
+        SuccessfulExport: Label 'Successfully exported to config.json!';
         FailedToExport: Label 'Failed export to config.json';
         SelectConfigFileTitle: Label 'Select a configuration file';
         JsonFilesFilterTxt: Label 'json files (*.json)|*.json', Locked = true;
