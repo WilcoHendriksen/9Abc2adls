@@ -1,0 +1,1999 @@
+{
+	"TableDefinitions": [
+		{
+			"TableName": "Bin",
+			"ColumnNames": [
+				"Code",
+				"Description",
+				"Location Code",
+				"Zone Code"
+			]
+		},
+		{
+			"TableName": "Location",
+			"ColumnNames": [
+				"Code",
+				"Name",
+				"City",
+				"Address",
+				"Country/Region Code",
+				"Post Code"
+			]
+		},
+		{
+			"TableName": "Zone",
+			"ColumnNames": [
+				"Code",
+				"Description",
+				"Location Code"
+			]
+		},
+		{
+			"TableName": "G/L Budget Name",
+			"ColumnNames": [
+				"Description",
+				"Name"
+			]
+		},
+		{
+			"TableName": "Business Unit",
+			"ColumnNames": [
+				"Code",
+				"Name"
+			]
+		},
+		{
+			"TableName": "Cash Flow Account",
+			"ColumnNames": [
+				"Account Type",
+				"Name",
+				"No.",
+				"Search Name",
+				"Source Type"
+			]
+		},
+		{
+			"TableName": "Cash Flow Forecast",
+			"ColumnNames": [
+				"Description",
+				"No."
+			]
+		},
+		{
+			"TableName": "Capacity Ledger Entry",
+			"ColumnNames": [
+				"Entry No.",
+				"No.",
+				"Type",
+				"Dimension Set ID",
+				"Document Date",
+				"Ending Time",
+				"Invoiced Quantity",
+				"Item No.",
+				"Order Line No.",
+				"Order No.",
+				"Order Type",
+				"Output Quantity",
+				"Posting Date",
+				"Quantity",
+				"Run Time",
+				"Scrap Code",
+				"Scrap Quantity",
+				"Setup Time",
+				"Starting Time",
+				"Stop Code",
+				"Stop Time",
+				"Subcontracting"
+			]
+		},
+		{
+			"TableName": "Inventory Posting Group",
+			"ColumnNames": [
+				"Code",
+				"Description"
+			]
+		},
+		{
+			"TableName": "Item",
+			"ColumnNames": [
+				"Description",
+				"Inventory Posting Group",
+				"Item Category Code",
+				"No.",
+				"Base Unit of Measure",
+				"Country/Region of Origin Code",
+				"Description 2",
+				"Gen. Prod. Posting Group",
+				"Item Disc. Group",
+				"Type",
+				"Unit Cost",
+				"Vendor No."
+			]
+		},
+		{
+			"TableName": "Item Category",
+			"ColumnNames": [
+				"Code",
+				"Description",
+				"Indentation",
+				"Parent Category"
+			]
+		},
+		{
+			"TableName": "Item Ledger Entry",
+			"ColumnNames": [
+				"Entry No.",
+				"Entry Type",
+				"Item No.",
+				"Source Type",
+				"Document No.",
+				"Document Type",
+				"Posting Date",
+				"Dimension Set ID",
+				"Invoiced Quantity",
+				"Location Code",
+				"Quantity",
+				"Source No.",
+				"Variant Code",
+				"Order No.",
+				"Prod. Order Comp. Line No.",
+				"Correction",
+				"Document Line No.",
+				"Remaining Quantity",
+				"Return Reason Code",
+				"Transport Method"
+			]
+		},
+		{
+			"TableName": "Machine Center",
+			"ColumnNames": [
+				"Name",
+				"No.",
+				"Work Center No."
+			]
+		},
+		{
+			"TableName": "Prod. Order Component",
+			"ColumnNames": [
+				"Item No.",
+				"Line No.",
+				"Prod. Order Line No.",
+				"Prod. Order No.",
+				"Status",
+				"Bin Code",
+				"Cost Amount",
+				"Description",
+				"Dimension Set ID",
+				"Direct Cost Amount",
+				"Due Date",
+				"Expected Quantity",
+				"Indirect Cost %",
+				"Location Code",
+				"Overhead Amount",
+				"Overhead Rate",
+				"Qty. Picked",
+				"Quantity",
+				"Quantity (Base)",
+				"Remaining Qty. (Base)",
+				"Remaining Quantity",
+				"Scrap %",
+				"Unit Cost",
+				"Variant Code"
+			]
+		},
+		{
+			"TableName": "Prod. Order Routing Line",
+			"ColumnNames": [
+				"No.",
+				"Operation No.",
+				"Prod. Order No.",
+				"Routing No.",
+				"Routing Reference No.",
+				"Status",
+				"Type",
+				"Ending Date",
+				"Expected Capacity Need",
+				"Expected Capacity Ovhd. Cost",
+				"Expected Operation Cost Amt.",
+				"Fixed Scrap Quantity",
+				"Indirect Cost %",
+				"Input Quantity",
+				"Location Code",
+				"Lot Size",
+				"Move Time",
+				"Run Time",
+				"Setup Time",
+				"Wait Time",
+				"Work Center Group Code",
+				"Work Center No."
+			]
+		},
+		{
+			"TableName": "Work Center",
+			"ColumnNames": [
+				"Name",
+				"No.",
+				"Work Center Group Code"
+			]
+		},
+		{
+			"TableName": "Work Center Group",
+			"ColumnNames": [
+				"Code",
+				"Name"
+			]
+		},
+		{
+			"TableName": "Currency",
+			"ColumnNames": [
+				"Code",
+				"Description"
+			]
+		},
+		{
+			"TableName": "Country/Region",
+			"ColumnNames": [
+				"Code",
+				"Name",
+				"EU Country/Region Code"
+			]
+		},
+		{
+			"TableName": "Customer",
+			"ColumnNames": [
+				"City",
+				"Country/Region Code",
+				"Customer Disc. Group",
+				"Customer Posting Group",
+				"Customer Price Group",
+				"Gen. Bus. Posting Group",
+				"Name",
+				"No.",
+				"Payment Terms Code",
+				"Post Code",
+				"Salesperson Code",
+				"Territory Code"
+			]
+		},
+		{
+			"TableName": "Customer Discount Group",
+			"ColumnNames": [
+				"Code",
+				"Description"
+			]
+		},
+		{
+			"TableName": "Customer Price Group",
+			"ColumnNames": [
+				"Code",
+				"Description"
+			]
+		},
+		{
+			"TableName": "Gen. Business Posting Group",
+			"ColumnNames": [
+				"Code",
+				"Description"
+			]
+		},
+		{
+			"TableName": "Payment Terms",
+			"ColumnNames": [
+				"Code",
+				"Description"
+			]
+		},
+		{
+			"TableName": "Salesperson/Purchaser",
+			"ColumnNames": [
+				"Code",
+				"Name"
+			]
+		},
+		{
+			"TableName": "Territory",
+			"ColumnNames": [
+				"Code",
+				"Name"
+			]
+		},
+		{
+			"TableName": "Cust. Ledger Entry",
+			"ColumnNames": [
+				"Closed at Date",
+				"Document No.",
+				"Document Type",
+				"Due Date",
+				"Entry No.",
+				"External Document No.",
+				"On Hold",
+				"Open",
+				"Posting Date",
+				"Customer No.",
+				"Customer Posting Group",
+				"Dimension Set ID",
+				"Inv. Discount (LCY)",
+				"Salesperson Code",
+				"Sell-to Customer No."
+			]
+		},
+		{
+			"TableName": "Detailed Cust. Ledg. Entry",
+			"ColumnNames": [
+				"Cust. Ledger Entry No.",
+				"Entry No.",
+				"Entry Type",
+				"Posting Date",
+				"Amount",
+				"Amount (LCY)",
+				"Credit Amount (LCY)",
+				"Currency Code",
+				"Debit Amount (LCY)",
+				"Initial Entry Due Date"
+			]
+		},
+		{
+			"TableName": "Customer Posting Group",
+			"ColumnNames": [
+				"Code",
+				"Receivables Account"
+			]
+		},
+		{
+			"TableName": "Depreciation Book",
+			"ColumnNames": [
+				"Code",
+				"Description"
+			]
+		},
+		{
+			"TableName": "Cash Flow Forecast Entry",
+			"ColumnNames": [
+				"Cash Flow Date",
+				"Document No.",
+				"Entry No.",
+				"Source Type",
+				"Amount (LCY)",
+				"Cash Flow Account No.",
+				"Cash Flow Forecast No.",
+				"Dimension Set ID",
+				"G/L Budget Name",
+				"Payment Discount",
+				"Source No.",
+				"User ID"
+			]
+		},
+		{
+			"TableName": "G/L Entry",
+			"ColumnNames": [
+				"Description",
+				"Document Date",
+				"Document No.",
+				"Document Type",
+				"Entry No.",
+				"Gen. Posting Type",
+				"Posting Date",
+				"Amount",
+				"Business Unit Code",
+				"Credit Amount",
+				"Debit Amount",
+				"Dimension Set ID",
+				"G/L Account No.",
+				"Gen. Bus. Posting Group",
+				"Gen. Prod. Posting Group",
+				"Reason Code",
+				"Source Code",
+				"Source No.",
+				"Source Type",
+				"VAT Amount"
+			]
+		},
+		{
+			"TableName": "Value Entry",
+			"ColumnNames": [
+				"Document No.",
+				"Document Type",
+				"Entry No.",
+				"Entry Type",
+				"Item Ledger Entry Type",
+				"Posting Date",
+				"Cost Amount (Actual)",
+				"Cost Amount (Actual) (ACY)",
+				"Cost Amount (Expected)",
+				"Cost Amount (Expected) (ACY)",
+				"Cost Posted to G/L",
+				"Cost Posted to G/L (ACY)",
+				"Dimension Set ID",
+				"Expected Cost",
+				"Expected Cost Posted to G/L",
+				"Gen. Bus. Posting Group",
+				"Gen. Prod. Posting Group",
+				"Inventory Posting Group",
+				"Invoiced Quantity",
+				"Item Charge No.",
+				"Item Ledger Entry No.",
+				"Item No.",
+				"Location Code",
+				"No.",
+				"Purchase Amount (Actual)",
+				"Reason Code",
+				"Sales Amount (Actual)",
+				"Salespers./Purch. Code",
+				"Source Code",
+				"Source No.",
+				"Source Posting Group",
+				"Source Type",
+				"Type",
+				"Valued Quantity",
+				"Variant Code",
+				"Capacity Ledger Entry No.",
+				"Adjustment",
+				"Cost Amount (Non-Invtbl.)",
+				"Discount Amount",
+				"Document Date",
+				"Document Line No.",
+				"Item Ledger Entry Quantity",
+				"Return Reason Code",
+				"Sales Amount (Expected)"
+			]
+		},
+		{
+			"TableName": "Purch. Cr. Memo Hdr.",
+			"ColumnNames": [
+				"No.",
+				"Posting Date",
+				"Buy-from Vendor No.",
+				"Currency Code",
+				"Currency Factor",
+				"Expected Receipt Date",
+				"Gen. Bus. Posting Group",
+				"Location Code",
+				"Payment Terms Code",
+				"Pay-to Vendor No.",
+				"Purchaser Code",
+				"Reason Code",
+				"Sell-to Customer No.",
+				"Shipment Method Code",
+				"Ship-to Code",
+				"Source Code",
+				"Transport Method"
+			]
+		},
+		{
+			"TableName": "Purch. Inv. Header",
+			"ColumnNames": [
+				"No.",
+				"Posting Date",
+				"Buy-from Vendor No.",
+				"Currency Code",
+				"Currency Factor",
+				"Gen. Bus. Posting Group",
+				"Location Code",
+				"Pay-to Vendor No.",
+				"Purchaser Code",
+				"Reason Code",
+				"Sell-to Customer No.",
+				"Shipment Method Code",
+				"Ship-to Code",
+				"Source Code",
+				"Transport Method"
+			]
+		},
+		{
+			"TableName": "Purch. Rcpt. Header",
+			"ColumnNames": [
+				"No.",
+				"Posting Date",
+				"Buy-from Vendor No.",
+				"Currency Code",
+				"Document Date",
+				"Expected Receipt Date",
+				"Gen. Bus. Posting Group",
+				"Location Code",
+				"Order Date",
+				"Order No.",
+				"Pay-to Vendor No.",
+				"Promised Receipt Date",
+				"Purchaser Code",
+				"Reason Code",
+				"Requested Receipt Date",
+				"Shipment Method Code",
+				"Source Code",
+				"Transport Method",
+				"Currency Factor"
+			]
+		},
+		{
+			"TableName": "Return Receipt Header",
+			"ColumnNames": [
+				"No.",
+				"Posting Date",
+				"External Document No.",
+				"Return Order No.",
+				"Bill-to Customer No.",
+				"Currency Code",
+				"Document Date",
+				"Gen. Bus. Posting Group",
+				"Location Code",
+				"Order Date",
+				"Reason Code",
+				"Requested Delivery Date",
+				"Salesperson Code",
+				"Sell-to Customer No.",
+				"Shipment Date",
+				"Shipment Method Code",
+				"Shipping Agent Code",
+				"Source Code",
+				"Transport Method",
+				"Currency Factor"
+			]
+		},
+		{
+			"TableName": "Sales Cr.Memo Header",
+			"ColumnNames": [
+				"External Document No.",
+				"No.",
+				"Posting Date",
+				"Return Order No.",
+				"Bill-to Customer No.",
+				"Currency Code",
+				"Currency Factor",
+				"Gen. Bus. Posting Group",
+				"Location Code",
+				"Reason Code",
+				"Salesperson Code",
+				"Sell-to Customer No.",
+				"Source Code"
+			]
+		},
+		{
+			"TableName": "Sales Invoice Header",
+			"ColumnNames": [
+				"External Document No.",
+				"No.",
+				"Order No.",
+				"Posting Date",
+				"Bill-to Customer No.",
+				"Currency Code",
+				"Currency Factor",
+				"Customer Posting Group",
+				"Reason Code",
+				"Salesperson Code",
+				"Sell-to Customer No.",
+				"Shipping Agent Code",
+				"Source Code"
+			]
+		},
+		{
+			"TableName": "Sales Shipment Header",
+			"ColumnNames": [
+				"External Document No.",
+				"No.",
+				"Order No.",
+				"Posting Date",
+				"Bill-to Customer No.",
+				"Currency Code",
+				"Document Date",
+				"Gen. Bus. Posting Group",
+				"Location Code",
+				"Promised Delivery Date",
+				"Reason Code",
+				"Requested Delivery Date",
+				"Salesperson Code",
+				"Sell-to Customer No.",
+				"Shipment Date",
+				"Shipment Method Code",
+				"Shipping Agent Code",
+				"Shipping Agent Service Code",
+				"Source Code",
+				"Transport Method",
+				"Currency Factor"
+			]
+		},
+		{
+			"TableName": "Service Cr.Memo Header",
+			"ColumnNames": [
+				"No.",
+				"Posting Date"
+			]
+		},
+		{
+			"TableName": "Service Invoice Header",
+			"ColumnNames": [
+				"No.",
+				"Order No.",
+				"Posting Date"
+			]
+		},
+		{
+			"TableName": "Service Shipment Header",
+			"ColumnNames": [
+				"No.",
+				"Order No.",
+				"Posting Date"
+			]
+		},
+		{
+			"TableName": "Transfer Header",
+			"ColumnNames": [
+				"No.",
+				"Posting Date",
+				"Status",
+				"Assigned User ID",
+				"Dimension Set ID",
+				"In-Transit Code",
+				"Receipt Date",
+				"Shipment Date",
+				"Shipment Method Code",
+				"Transfer-from Code",
+				"Transfer-to Code",
+				"Transport Method"
+			]
+		},
+		{
+			"TableName": "Transfer Receipt Header",
+			"ColumnNames": [
+				"No.",
+				"Posting Date",
+				"Dimension Set ID",
+				"In-Transit Code",
+				"Receipt Date",
+				"Shipment Date",
+				"Shipment Method Code",
+				"Transfer-from Code",
+				"Transfer-to Code",
+				"Transport Method"
+			]
+		},
+		{
+			"TableName": "Transfer Shipment Header",
+			"ColumnNames": [
+				"No.",
+				"Posting Date",
+				"Dimension Set ID",
+				"In-Transit Code",
+				"Receipt Date",
+				"Shipment Date",
+				"Shipment Method Code",
+				"Transfer-from Code",
+				"Transfer-to Code",
+				"Transport Method"
+			]
+		},
+		{
+			"TableName": "Posted Whse. Receipt Header",
+			"ColumnNames": [
+				"Assignment Date",
+				"Assignment Time",
+				"No.",
+				"Posting Date",
+				"Vendor Shipment No.",
+				"Assigned User ID"
+			]
+		},
+		{
+			"TableName": "Posted Whse. Shipment Header",
+			"ColumnNames": [
+				"Assignment Date",
+				"Assignment Time",
+				"No.",
+				"Posting Date",
+				"Assigned User ID"
+			]
+		},
+		{
+			"TableName": "Registered Whse. Activity Hdr.",
+			"ColumnNames": [
+				"Assignment Date",
+				"Assignment Time",
+				"No.",
+				"Registering Date",
+				"Type",
+				"Assigned User ID"
+			]
+		},
+		{
+			"TableName": "Employee",
+			"ColumnNames": [
+				"First Name",
+				"Last Name",
+				"Middle Name",
+				"No."
+			]
+		},
+		{
+			"TableName": "FA Posting Group",
+			"ColumnNames": [
+				"Code",
+				"Custom 1 Account"
+			]
+		},
+		{
+			"TableName": "FA Class",
+			"ColumnNames": [
+				"Code",
+				"Name"
+			]
+		},
+		{
+			"TableName": "FA Location",
+			"ColumnNames": [
+				"Code",
+				"Name"
+			]
+		},
+		{
+			"TableName": "FA Subclass",
+			"ColumnNames": [
+				"Code",
+				"FA Class Code",
+				"Name"
+			]
+		},
+		{
+			"TableName": "Fixed Asset",
+			"ColumnNames": [
+				"Blocked",
+				"Budgeted Asset",
+				"Description",
+				"FA Class Code",
+				"FA Location Code",
+				"FA Subclass Code",
+				"Inactive",
+				"Location Code",
+				"Maintenance Vendor No.",
+				"No.",
+				"Responsible Employee",
+				"Serial No.",
+				"Vendor No."
+			]
+		},
+		{
+			"TableName": "Vendor",
+			"ColumnNames": [
+				"Name",
+				"No.",
+				"City",
+				"Country/Region Code",
+				"Currency Code",
+				"Gen. Bus. Posting Group",
+				"Payment Terms Code",
+				"Purchaser Code",
+				"Territory Code",
+				"Vendor Posting Group"
+			]
+		},
+		{
+			"TableName": "G/L Account",
+			"ColumnNames": [
+				"Account Category",
+				"Account Type",
+				"Income/Balance",
+				"Indentation",
+				"Name",
+				"No.",
+				"Totaling",
+				"Debit/Credit"
+			]
+		},
+		{
+			"TableName": "Gen. Product Posting Group",
+			"ColumnNames": [
+				"Code",
+				"Description"
+			]
+		},
+		{
+			"TableName": "Item Discount Group",
+			"ColumnNames": [
+				"Code",
+				"Description"
+			]
+		},
+		{
+			"TableName": "Unit of Measure",
+			"ColumnNames": [
+				"Code",
+				"Description"
+			]
+		},
+		{
+			"TableName": "Item Charge",
+			"ColumnNames": [
+				"Description",
+				"No."
+			]
+		},
+		{
+			"TableName": "Item Variant",
+			"ColumnNames": [
+				"Code",
+				"Description",
+				"Description 2",
+				"Item No."
+			]
+		},
+		{
+			"TableName": "Job",
+			"ColumnNames": [
+				"Bill-to Customer No.",
+				"Blocked",
+				"Creation Date",
+				"Description",
+				"Description 2",
+				"Ending Date",
+				"Global Dimension 1 Code",
+				"Global Dimension 2 Code",
+				"Job Posting Group",
+				"No.",
+				"Person Responsible",
+				"Project Manager",
+				"Search Description",
+				"Starting Date",
+				"Status",
+				"Allow Budget/Billable Lines",
+				"Apply Usage Link",
+				"Bill-to Address",
+				"Bill-to Address 2",
+				"Bill-to City",
+				"Bill-to Contact",
+				"Bill-to Contact No.",
+				"Bill-to Country/Region Code",
+				"Bill-to County",
+				"Bill-to Name",
+				"Bill-to Name 2",
+				"Bill-to Post Code",
+				"Complete",
+				"Currency Code",
+				"Customer Disc. Group",
+				"Customer Price Group",
+				"Exch. Calculation (Cost)",
+				"Exch. Calculation (Price)",
+				"Invoice Currency Code",
+				"Language Code",
+				"Last Date Modified",
+				"No. Series",
+				"Reserve",
+				"WIP Method",
+				"WIP Posting Date",
+				"WIP Posting Method"
+			]
+		},
+		{
+			"TableName": "Job Task",
+			"ColumnNames": [
+				"Description",
+				"Global Dimension 1 Code",
+				"Global Dimension 2 Code",
+				"Indentation",
+				"Job No.",
+				"Job Posting Group",
+				"Job Task No.",
+				"Job Task Type",
+				"New Page",
+				"No. of Blank Lines",
+				"Recognized Costs Amount",
+				"Recognized Costs G/L Amount",
+				"Recognized Sales Amount",
+				"Recognized Sales G/L Amount",
+				"Totaling",
+				"WIP Method",
+				"WIP-Total"
+			]
+		},
+		{
+			"TableName": "Lot No. Information",
+			"ColumnNames": [
+				"Blocked",
+				"Certificate Number",
+				"Description",
+				"Item No.",
+				"Lot No.",
+				"Test Quality",
+				"Variant Code"
+			]
+		},
+		{
+			"TableName": "Production Forecast Name",
+			"ColumnNames": [
+				"Description",
+				"Name"
+			]
+		},
+		{
+			"TableName": "Production Order",
+			"ColumnNames": [
+				"Description",
+				"Gen. Bus. Posting Group",
+				"Gen. Prod. Posting Group",
+				"Inventory Posting Group",
+				"No.",
+				"Source Type",
+				"Status"
+			]
+		},
+		{
+			"TableName": "Item Budget Name",
+			"ColumnNames": [
+				"Analysis Area",
+				"Description",
+				"Name"
+			]
+		},
+		{
+			"TableName": "Purchase Header",
+			"ColumnNames": [
+				"Document Type",
+				"No.",
+				"Status",
+				"Buy-from Vendor No.",
+				"Currency Code",
+				"Currency Factor",
+				"Dimension Set ID",
+				"Document Date",
+				"Due Date",
+				"Expected Receipt Date",
+				"Gen. Bus. Posting Group",
+				"Location Code",
+				"Order Date",
+				"Pay-to Vendor No.",
+				"Posting Date",
+				"Promised Receipt Date",
+				"Purchaser Code",
+				"Requested Receipt Date",
+				"Shipment Method Code",
+				"Ship-to Code",
+				"Transaction Type",
+				"Transport Method",
+				"Vendor Order No."
+			]
+		},
+		{
+			"TableName": "Reason Code",
+			"ColumnNames": [
+				"Code",
+				"Description"
+			]
+		},
+		{
+			"TableName": "Resource",
+			"ColumnNames": [
+				"Name",
+				"No.",
+				"Resource Group No.",
+				"Type"
+			]
+		},
+		{
+			"TableName": "Resource Group",
+			"ColumnNames": [
+				"Name",
+				"No.",
+				"Global Dimension 1 Code",
+				"Global Dimension 2 Code"
+			]
+		},
+		{
+			"TableName": "Return Reason",
+			"ColumnNames": [
+				"Code",
+				"Description"
+			]
+		},
+		{
+			"TableName": "Sales Header",
+			"ColumnNames": [
+				"Document Type",
+				"No.",
+				"Quote No.",
+				"Status",
+				"Bill-to Customer No.",
+				"Currency Code",
+				"Currency Factor",
+				"Customer Posting Group",
+				"Customer Price Group",
+				"Dimension Set ID",
+				"Document Date",
+				"Gen. Bus. Posting Group",
+				"Location Code",
+				"On Hold",
+				"Opportunity No.",
+				"Order Date",
+				"Posting Date",
+				"Salesperson Code",
+				"Sell-to Customer No.",
+				"Shipment Method Code",
+				"Shipping Agent Code",
+				"Shipping Agent Service Code",
+				"Ship-to Code",
+				"Transport Method"
+			]
+		},
+		{
+			"TableName": "Scrap",
+			"ColumnNames": [
+				"Code",
+				"Description"
+			]
+		},
+		{
+			"TableName": "Shipment Method",
+			"ColumnNames": [
+				"Code",
+				"Description"
+			]
+		},
+		{
+			"TableName": "Shipping Agent",
+			"ColumnNames": [
+				"Code",
+				"Name"
+			]
+		},
+		{
+			"TableName": "Shipping Agent Services",
+			"ColumnNames": [
+				"Code",
+				"Description",
+				"Shipping Agent Code"
+			]
+		},
+		{
+			"TableName": "Source Code",
+			"ColumnNames": [
+				"Code",
+				"Description"
+			]
+		},
+		{
+			"TableName": "Stop",
+			"ColumnNames": [
+				"Code",
+				"Description"
+			]
+		},
+		{
+			"TableName": "Transport Method",
+			"ColumnNames": [
+				"Code",
+				"Description"
+			]
+		},
+		{
+			"TableName": "Detailed Vendor Ledg. Entry",
+			"ColumnNames": [
+				"Entry No.",
+				"Entry Type",
+				"Posting Date",
+				"Vendor Ledger Entry No.",
+				"Amount",
+				"Amount (LCY)",
+				"Credit Amount (LCY)",
+				"Currency Code",
+				"Debit Amount (LCY)",
+				"Initial Entry Due Date",
+				"Vendor No."
+			]
+		},
+		{
+			"TableName": "Vendor Ledger Entry",
+			"ColumnNames": [
+				"Closed at Date",
+				"Description",
+				"Document Date",
+				"Document No.",
+				"Document Type",
+				"Due Date",
+				"Entry No.",
+				"External Document No.",
+				"On Hold",
+				"Open",
+				"Posting Date",
+				"Buy-from Vendor No.",
+				"Dimension Set ID",
+				"Inv. Discount (LCY)",
+				"Purchaser Code",
+				"Vendor Posting Group"
+			]
+		},
+		{
+			"TableName": "Vendor Posting Group",
+			"ColumnNames": [
+				"Code",
+				"Payables Account"
+			]
+		},
+		{
+			"TableName": "Warehouse Employee",
+			"ColumnNames": [
+				"Default",
+				"Location Code",
+				"User ID"
+			]
+		},
+		{
+			"TableName": "FA Ledger Entry",
+			"ColumnNames": [
+				"Amount",
+				"Amount (LCY)",
+				"Credit Amount",
+				"Debit Amount",
+				"Depreciation Book Code",
+				"Dimension Set ID",
+				"Entry No.",
+				"FA No.",
+				"FA Posting Category",
+				"FA Posting Date",
+				"FA Posting Group",
+				"FA Posting Type",
+				"G/L Entry No.",
+				"Part of Book Value",
+				"Posting Date",
+				"Reason Code",
+				"Source Code"
+			]
+		},
+		{
+			"TableName": "G/L Budget Entry",
+			"ColumnNames": [
+				"Amount",
+				"Budget Name",
+				"Date",
+				"Dimension Set ID",
+				"Entry No.",
+				"G/L Account No."
+			]
+		},
+		{
+			"TableName": "Job Ledger Entry",
+			"ColumnNames": [
+				"Add.-Currency Line Amount",
+				"Add.-Currency Total Price",
+				"Additional-Currency Total Cost",
+				"Adjusted",
+				"Amt. Posted to G/L",
+				"Amt. to Post to G/L",
+				"Area",
+				"Bin Code",
+				"Country/Region Code",
+				"Currency Code",
+				"Currency Factor",
+				"Customer Price Group",
+				"DateTime Adjusted",
+				"Description",
+				"Description 2",
+				"Dimension Set ID",
+				"Direct Unit Cost (LCY)",
+				"Document Date",
+				"Document No.",
+				"Entry No.",
+				"Entry Type",
+				"Entry/Exit Point",
+				"External Document No.",
+				"Gen. Bus. Posting Group",
+				"Gen. Prod. Posting Group",
+				"Global Dimension 1 Code",
+				"Global Dimension 2 Code",
+				"Job No.",
+				"Posting Group",
+				"Job Task No.",
+				"Journal Batch Name",
+				"Ledger Entry No.",
+				"Ledger Entry Type",
+				"Line Amount",
+				"Line Amount (LCY)",
+				"Line Discount %",
+				"Line Discount Amount",
+				"Line Discount Amount (LCY)",
+				"Line Type",
+				"Location Code",
+				"Lot No.",
+				"No.",
+				"No. Series",
+				"Original Total Cost",
+				"Original Total Cost (ACY)",
+				"Original Total Cost (LCY)",
+				"Original Unit Cost",
+				"Original Unit Cost (LCY)",
+				"Posted Service Shipment No.",
+				"Posting Date",
+				"Qty. per Unit of Measure",
+				"Quantity",
+				"Quantity (Base)",
+				"Reason Code",
+				"Resource Group No.",
+				"Serial No.",
+				"Service Order No.",
+				"Source Code",
+				"Total Cost",
+				"Total Cost (LCY)",
+				"Total Price",
+				"Total Price (LCY)",
+				"Transaction Specification",
+				"Transaction Type",
+				"Transport Method",
+				"Type",
+				"Unit Cost",
+				"Unit Cost (LCY)",
+				"Unit of Measure Code",
+				"Unit Price",
+				"Unit Price (LCY)",
+				"User ID",
+				"Variant Code",
+				"Work Type Code"
+			]
+		},
+		{
+			"TableName": "Job Planning Line",
+			"ColumnNames": [
+				"Bin Code",
+				"Billable Line",
+				"Cost Factor",
+				"Country/Region Code",
+				"Currency Code",
+				"Currency Date",
+				"Currency Factor",
+				"Customer Price Group",
+				"Description",
+				"Description 2",
+				"Direct Unit Cost (LCY)",
+				"Document Date",
+				"Document No.",
+				"Gen. Bus. Posting Group",
+				"Gen. Prod. Posting Group",
+				"Job Contract Entry No.",
+				"Job Ledger Entry No.",
+				"Job No.",
+				"Job Task No.",
+				"Last Date Modified",
+				"Ledger Entry No.",
+				"Ledger Entry Type",
+				"Line Amount",
+				"Line Amount (LCY)",
+				"Line Discount %",
+				"Line Discount Amount",
+				"Line Discount Amount (LCY)",
+				"Line No.",
+				"Line Type",
+				"Location Code",
+				"Lot No.",
+				"No.",
+				"Planned",
+				"Planned Delivery Date",
+				"Planning Date",
+				"Posted Line Amount",
+				"Posted Line Amount (LCY)",
+				"Posted Total Cost",
+				"Posted Total Cost (LCY)",
+				"Promised Delivery Date",
+				"Qty. per Unit of Measure",
+				"Qty. Posted",
+				"Qty. to Invoice",
+				"Qty. to Transfer to Invoice",
+				"Qty. to Transfer to Journal",
+				"Quantity",
+				"Quantity (Base)",
+				"Remaining Line Amount",
+				"Remaining Line Amount (LCY)",
+				"Remaining Qty.",
+				"Remaining Qty. (Base)",
+				"Remaining Total Cost",
+				"Remaining Total Cost (LCY)",
+				"Requested Delivery Date",
+				"Reserve",
+				"Resource Group No.",
+				"Budget Line",
+				"Serial No.",
+				"Service Order No.",
+				"Status",
+				"System-Created Entry",
+				"Total Cost",
+				"Total Cost (LCY)",
+				"Total Price",
+				"Total Price (LCY)",
+				"Type",
+				"Unit Cost",
+				"Unit Cost (LCY)",
+				"Unit of Measure Code",
+				"Unit Price",
+				"Unit Price (LCY)",
+				"Usage Link",
+				"User ID",
+				"Variant Code",
+				"VAT %",
+				"VAT Line Amount",
+				"VAT Line Discount Amount",
+				"VAT Unit Price",
+				"Work Type Code"
+			]
+		},
+		{
+			"TableName": "Prod. Order Line",
+			"ColumnNames": [
+				"Bin Code",
+				"Dimension Set ID",
+				"Due Date",
+				"Inventory Posting Group",
+				"Item No.",
+				"Line No.",
+				"Location Code",
+				"Prod. Order No.",
+				"Quantity (Base)",
+				"Remaining Quantity",
+				"Routing No.",
+				"Routing Reference No.",
+				"Routing Type",
+				"Routing Version Code",
+				"Status",
+				"Unit Cost",
+				"Variant Code"
+			]
+		},
+		{
+			"TableName": "Production Forecast Entry",
+			"ColumnNames": [
+				"Component Forecast",
+				"Description",
+				"Entry No.",
+				"Forecast Date",
+				"Forecast Quantity",
+				"Forecast Quantity (Base)",
+				"Item No.",
+				"Location Code",
+				"Demand Forecast Name"
+			]
+		},
+		{
+			"TableName": "Item Budget Entry",
+			"ColumnNames": [
+				"Analysis Area",
+				"Budget Name",
+				"Cost Amount",
+				"Date",
+				"Description",
+				"Dimension Set ID",
+				"Entry No.",
+				"Item No.",
+				"Location Code",
+				"Quantity",
+				"Sales Amount",
+				"Source No.",
+				"Source Type"
+			]
+		},
+		{
+			"TableName": "Purchase Line",
+			"ColumnNames": [
+				"Amount",
+				"Amount Including VAT",
+				"Amt. Rcd. Not Invoiced",
+				"Amt. Rcd. Not Invoiced (LCY)",
+				"Buy-from Vendor No.",
+				"Currency Code",
+				"Dimension Set ID",
+				"Document No.",
+				"Document Type",
+				"Expected Receipt Date",
+				"Gen. Bus. Posting Group",
+				"Gen. Prod. Posting Group",
+				"Gross Weight",
+				"Inv. Disc. Amount to Invoice",
+				"Inv. Discount Amount",
+				"Item Category Code",
+				"Line Amount",
+				"Line Discount %",
+				"Line Discount Amount",
+				"Line No.",
+				"Location Code",
+				"Net Weight",
+				"No.",
+				"Order Date",
+				"Outstanding Amount",
+				"Outstanding Amount (LCY)",
+				"Outstanding Amt. Ex. VAT (LCY)",
+				"Outstanding Qty. (Base)",
+				"Outstanding Quantity",
+				"Pay-to Vendor No.",
+				"Planned Receipt Date",
+				"Promised Receipt Date",
+				"Purchasing Code",
+				"Qty. Invoiced (Base)",
+				"Qty. per Unit of Measure",
+				"Qty. Rcd. Not Invoiced",
+				"Qty. Rcd. Not Invoiced (Base)",
+				"Qty. Received (Base)",
+				"Qty. to Invoice",
+				"Qty. to Invoice (Base)",
+				"Qty. to Receive",
+				"Qty. to Receive (Base)",
+				"Quantity",
+				"Quantity (Base)",
+				"Quantity Invoiced",
+				"Quantity Received",
+				"Requested Receipt Date",
+				"Transaction Type",
+				"Transport Method",
+				"Type",
+				"Unit Cost",
+				"Unit Cost (LCY)",
+				"Unit of Measure",
+				"Unit of Measure Code",
+				"Unit Volume",
+				"Variant Code"
+			]
+		},
+		{
+			"TableName": "Return Shipment Header",
+			"ColumnNames": [
+				"Buy-from Vendor No.",
+				"Currency Code",
+				"Document Date",
+				"Expected Receipt Date",
+				"Gen. Bus. Posting Group",
+				"Location Code",
+				"No.",
+				"Pay-to Vendor No.",
+				"Posting Date",
+				"Purchaser Code",
+				"Reason Code",
+				"Sell-to Customer No.",
+				"Shipment Method Code",
+				"Source Code",
+				"Transport Method",
+				"Currency Factor"
+			]
+		},
+		{
+			"TableName": "Return Shipment Line",
+			"ColumnNames": [
+				"Buy-from Vendor No.",
+				"Dimension Set ID",
+				"Document No.",
+				"Gen. Bus. Posting Group",
+				"Gen. Prod. Posting Group",
+				"Gross Weight",
+				"Line Discount %",
+				"Line No.",
+				"Location Code",
+				"Net Weight",
+				"No.",
+				"Pay-to Vendor No.",
+				"Posting Date",
+				"Qty. Invoiced (Base)",
+				"Qty. per Unit of Measure",
+				"Quantity",
+				"Quantity (Base)",
+				"Quantity Invoiced",
+				"Return Qty. Shipped Not Invd.",
+				"Return Reason Code",
+				"Transport Method",
+				"Unit Cost",
+				"Unit Cost (LCY)",
+				"Unit of Measure Code",
+				"Unit Price (LCY)",
+				"Variant Code",
+				"Type"
+			]
+		},
+		{
+			"TableName": "Purch. Rcpt. Line",
+			"ColumnNames": [
+				"Buy-from Vendor No.",
+				"Dimension Set ID",
+				"Document No.",
+				"Expected Receipt Date",
+				"Gen. Bus. Posting Group",
+				"Gen. Prod. Posting Group",
+				"Gross Weight",
+				"Line Discount %",
+				"Line No.",
+				"Location Code",
+				"Net Weight",
+				"No.",
+				"Order Date",
+				"Order No.",
+				"Pay-to Vendor No.",
+				"Planned Receipt Date",
+				"Posting Date",
+				"Promised Receipt Date",
+				"Purchasing Code",
+				"Qty. Invoiced (Base)",
+				"Qty. per Unit of Measure",
+				"Qty. Rcd. Not Invoiced",
+				"Quantity",
+				"Quantity (Base)",
+				"Quantity Invoiced",
+				"Requested Receipt Date",
+				"Return Reason Code",
+				"Transport Method",
+				"Unit Cost",
+				"Unit Cost (LCY)",
+				"Unit of Measure Code",
+				"Unit Price (LCY)",
+				"Variant Code",
+				"Type"
+			]
+		},
+		{
+			"TableName": "Purch. Cr. Memo Line",
+			"ColumnNames": [
+				"Amount",
+				"Buy-from Vendor No.",
+				"Dimension Set ID",
+				"Document No.",
+				"Expected Receipt Date",
+				"Gen. Bus. Posting Group",
+				"Gen. Prod. Posting Group",
+				"Gross Weight",
+				"Inv. Discount Amount",
+				"Item Category Code",
+				"Line Amount",
+				"Line Discount %",
+				"Line Discount Amount",
+				"Line No.",
+				"Location Code",
+				"Net Weight",
+				"No.",
+				"Posting Date",
+				"Quantity",
+				"Quantity (Base)",
+				"Return Reason Code",
+				"Transport Method",
+				"Type",
+				"Unit Cost",
+				"Unit Cost (LCY)",
+				"Unit of Measure",
+				"Unit of Measure Code",
+				"Unit Price (LCY)",
+				"Pay-to Vendor No."
+			]
+		},
+		{
+			"TableName": "Purch. Inv. Line",
+			"ColumnNames": [
+				"Amount",
+				"Buy-from Vendor No.",
+				"Dimension Set ID",
+				"Document No.",
+				"Expected Receipt Date",
+				"Gen. Bus. Posting Group",
+				"Gen. Prod. Posting Group",
+				"Gross Weight",
+				"Inv. Discount Amount",
+				"Item Category Code",
+				"Line Amount",
+				"Line Discount %",
+				"Line Discount Amount",
+				"Line No.",
+				"Location Code",
+				"Net Weight",
+				"No.",
+				"Pay-to Vendor No.",
+				"Posting Date",
+				"Qty. per Unit of Measure",
+				"Quantity",
+				"Quantity (Base)",
+				"Return Reason Code",
+				"Transport Method",
+				"Type",
+				"Unit Cost",
+				"Unit Cost (LCY)",
+				"Unit of Measure Code",
+				"Unit Price (LCY)"
+			]
+		},
+		{
+			"TableName": "Res. Capacity Entry",
+			"ColumnNames": [
+				"Capacity",
+				"Date",
+				"Entry No.",
+				"Resource Group No.",
+				"Resource No."
+			]
+		},
+		{
+			"TableName": "Sales Line",
+			"ColumnNames": [
+				"Amount",
+				"Amount Including VAT",
+				"Bill-to Customer No.",
+				"Currency Code",
+				"Description",
+				"Dimension Set ID",
+				"Document No.",
+				"Document Type",
+				"Gen. Bus. Posting Group",
+				"Gen. Prod. Posting Group",
+				"Gross Weight",
+				"Inv. Discount Amount",
+				"Line Amount",
+				"Line Discount %",
+				"Line Discount Amount",
+				"Line No.",
+				"Location Code",
+				"Net Weight",
+				"No.",
+				"Outstanding Amount",
+				"Outstanding Amount (LCY)",
+				"Outstanding Qty. (Base)",
+				"Outstanding Quantity",
+				"Planned Delivery Date",
+				"Planned Shipment Date",
+				"Posting Group",
+				"Promised Delivery Date",
+				"Qty. Invoiced (Base)",
+				"Qty. per Unit of Measure",
+				"Qty. Shipped (Base)",
+				"Qty. Shipped Not Invd. (Base)",
+				"Qty. Shipped Not Invoiced",
+				"Qty. to Invoice",
+				"Qty. to Invoice (Base)",
+				"Qty. to Ship",
+				"Qty. to Ship (Base)",
+				"Quantity",
+				"Quantity (Base)",
+				"Quantity Invoiced",
+				"Quantity Shipped",
+				"Sell-to Customer No.",
+				"Shipment Date",
+				"Shipped Not Invoiced",
+				"Shipped Not Invoiced (LCY)",
+				"Shipping Agent Code",
+				"Shipping Agent Service Code",
+				"Transport Method",
+				"Type",
+				"Unit Cost",
+				"Unit Cost (LCY)",
+				"Unit of Measure",
+				"Unit Price",
+				"Variant Code"
+			]
+		},
+		{
+			"TableName": "Return Receipt Line",
+			"ColumnNames": [
+				"Bill-to Customer No.",
+				"Dimension Set ID",
+				"Document No.",
+				"Gen. Bus. Posting Group",
+				"Gen. Prod. Posting Group",
+				"Gross Weight",
+				"Line Discount %",
+				"Line No.",
+				"Location Code",
+				"Net Weight",
+				"No.",
+				"Posting Date",
+				"Qty. Invoiced (Base)",
+				"Qty. per Unit of Measure",
+				"Quantity",
+				"Quantity (Base)",
+				"Quantity Invoiced",
+				"Return Reason Code",
+				"Sell-to Customer No.",
+				"Shipment Date",
+				"Transport Method",
+				"Unit Cost",
+				"Unit Cost (LCY)",
+				"Unit of Measure Code",
+				"Unit Price",
+				"Variant Code",
+				"Type"
+			]
+		},
+		{
+			"TableName": "Sales Shipment Line",
+			"ColumnNames": [
+				"Bill-to Customer No.",
+				"Description",
+				"Dimension Set ID",
+				"Document No.",
+				"Gen. Bus. Posting Group",
+				"Gen. Prod. Posting Group",
+				"Gross Weight",
+				"Item Charge Base Amount",
+				"Line Discount %",
+				"Line No.",
+				"Location Code",
+				"Net Weight",
+				"No.",
+				"Order No.",
+				"Planned Delivery Date",
+				"Planned Shipment Date",
+				"Posting Date",
+				"Promised Delivery Date",
+				"Qty. Invoiced (Base)",
+				"Qty. per Unit of Measure",
+				"Qty. Shipped Not Invoiced",
+				"Quantity",
+				"Quantity (Base)",
+				"Quantity Invoiced",
+				"Requested Delivery Date",
+				"Return Reason Code",
+				"Sell-to Customer No.",
+				"Shipment Date",
+				"Transport Method",
+				"Type",
+				"Unit Cost",
+				"Unit Cost (LCY)",
+				"Unit of Measure",
+				"Unit of Measure Code",
+				"Unit Price",
+				"Variant Code"
+			]
+		},
+		{
+			"TableName": "Sales Cr.Memo Line",
+			"ColumnNames": [
+				"Amount",
+				"Bill-to Customer No.",
+				"Dimension Set ID",
+				"Document No.",
+				"Gen. Bus. Posting Group",
+				"Gen. Prod. Posting Group",
+				"Gross Weight",
+				"Inv. Discount Amount",
+				"Item Category Code",
+				"Line Amount",
+				"Line Discount %",
+				"Line Discount Amount",
+				"Line No.",
+				"Location Code",
+				"Net Weight",
+				"No.",
+				"Posting Date",
+				"Quantity",
+				"Quantity (Base)",
+				"Sell-to Customer No.",
+				"Transport Method",
+				"Type",
+				"Unit Cost",
+				"Unit Cost (LCY)",
+				"Unit of Measure",
+				"Unit Price",
+				"Variant Code"
+			]
+		},
+		{
+			"TableName": "Sales Invoice Line",
+			"ColumnNames": [
+				"Amount",
+				"Bill-to Customer No.",
+				"Dimension Set ID",
+				"Document No.",
+				"Gen. Bus. Posting Group",
+				"Gen. Prod. Posting Group",
+				"Inv. Discount Amount",
+				"Item Category Code",
+				"Line Amount",
+				"Line Discount Amount",
+				"Line No.",
+				"Location Code",
+				"No.",
+				"Posting Date",
+				"Quantity (Base)",
+				"Sell-to Customer No.",
+				"Type",
+				"Unit Cost",
+				"Unit Cost (LCY)"
+			]
+		},
+		{
+			"TableName": "Transfer Line",
+			"ColumnNames": [
+				"Derived From Line No.",
+				"Dimension Set ID",
+				"Document No.",
+				"In-Transit Code",
+				"Inventory Posting Group",
+				"Item No.",
+				"Line No.",
+				"Outstanding Qty. (Base)",
+				"Outstanding Quantity",
+				"Qty. in Transit",
+				"Qty. in Transit (Base)",
+				"Qty. Received (Base)",
+				"Qty. Shipped (Base)",
+				"Qty. to Receive",
+				"Qty. to Receive (Base)",
+				"Qty. to Ship",
+				"Qty. to Ship (Base)",
+				"Quantity",
+				"Quantity (Base)",
+				"Quantity Received",
+				"Quantity Shipped",
+				"Receipt Date",
+				"Shipment Date",
+				"Transfer-from Bin Code",
+				"Transfer-from Code",
+				"Transfer-To Bin Code",
+				"Transfer-to Code",
+				"Unit of Measure Code",
+				"Variant Code"
+			]
+		},
+		{
+			"TableName": "Transfer Receipt Line",
+			"ColumnNames": [
+				"Dimension Set ID",
+				"Document No.",
+				"In-Transit Code",
+				"Inventory Posting Group",
+				"Item No.",
+				"Line No.",
+				"Quantity",
+				"Quantity (Base)",
+				"Receipt Date",
+				"Transfer Order No.",
+				"Transfer-from Code",
+				"Transfer-To Bin Code",
+				"Transfer-to Code",
+				"Variant Code"
+			]
+		},
+		{
+			"TableName": "Transfer Shipment Line",
+			"ColumnNames": [
+				"Dimension Set ID",
+				"Document No.",
+				"In-Transit Code",
+				"Inventory Posting Group",
+				"Item No.",
+				"Line No.",
+				"Quantity",
+				"Quantity (Base)",
+				"Shipment Date",
+				"Transfer Order No.",
+				"Transfer-from Bin Code",
+				"Transfer-from Code",
+				"Transfer-to Code",
+				"Variant Code"
+			]
+		},
+		{
+			"TableName": "Posted Whse. Receipt Line",
+			"ColumnNames": [
+				"Bin Code",
+				"Expiration Date",
+				"Item No.",
+				"Line No.",
+				"Location Code",
+				"Lot No.",
+				"No.",
+				"Qty. (Base)",
+				"Qty. Put Away (Base)",
+				"Source Document",
+				"Source No.",
+				"Status",
+				"Variant Code",
+				"Warranty Date",
+				"Zone Code"
+			]
+		},
+		{
+			"TableName": "Posted Whse. Shipment Line",
+			"ColumnNames": [
+				"Bin Code",
+				"Item No.",
+				"Line No.",
+				"Location Code",
+				"No.",
+				"Qty. (Base)",
+				"Source Document",
+				"Source No.",
+				"Variant Code",
+				"Zone Code"
+			]
+		},
+		{
+			"TableName": "Registered Whse. Activity Line",
+			"ColumnNames": [
+				"Action Type",
+				"Activity Type",
+				"Bin Code",
+				"Cubage",
+				"Expiration Date",
+				"Item No.",
+				"Line No.",
+				"Location Code",
+				"Lot No.",
+				"No.",
+				"Qty. (Base)",
+				"Source Document",
+				"Source No.",
+				"Variant Code",
+				"Warranty Date",
+				"Weight",
+				"Zone Code"
+			]
+		},
+		{
+			"TableName": "Warehouse Entry",
+			"ColumnNames": [
+				"Bin Code",
+				"Bin Type Code",
+				"Cubage",
+				"Entry No.",
+				"Entry Type",
+				"Expiration Date",
+				"Item No.",
+				"Line No.",
+				"Location Code",
+				"Lot No.",
+				"Qty. (Base)",
+				"Quantity",
+				"Reason Code",
+				"Registering Date",
+				"Source Code",
+				"Source Type",
+				"User ID",
+				"Variant Code",
+				"Warranty Date",
+				"Weight",
+				"Whse. Document Line No.",
+				"Whse. Document No.",
+				"Whse. Document Type",
+				"Zone Code"
+			]
+		},
+		{
+			"TableName": "Currency Exchange Rate",
+			"ColumnNames": [
+				"Currency Code",
+				"Exchange Rate Amount",
+				"Relational Currency Code",
+				"Relational Exch. Rate Amount",
+				"Starting Date"
+			]
+		},
+		{
+			"TableName": "Dimension Value",
+			"ColumnNames": [
+				"Code",
+				"Dimension Code",
+				"Dimension Value ID",
+				"Dimension Value Type",
+				"Global Dimension No.",
+				"Indentation",
+				"Name",
+				"Blocked"
+			]
+		},
+		{
+			"TableName": "Dimension Set Entry",
+			"ColumnNames": [
+				"Dimension Code",
+				"Dimension Set ID",
+				"Dimension Value Code",
+				"Dimension Value ID"
+			]
+		},
+		{
+			"TableName": "Dimension",
+			"ColumnNames": [
+				"Code",
+				"Name"
+			]
+		},
+		{
+			"TableName": "Company",
+			"ColumnNames": [
+				"Id",
+				"Name",
+				"Display Name"
+			]
+		},
+		{
+			"TableName": "ADLSE Option",
+			"ColumnNames": [
+				"LanguageCode",
+				"Table",
+				"Field",
+				"FieldCaption",
+				"OptionMember",
+				"OptionCaption"
+			]
+		}
+	]
+}
