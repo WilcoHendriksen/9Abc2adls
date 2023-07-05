@@ -1,4 +1,4 @@
-page 82575 "ADLSE Option"
+page 82591 "ADLSE Option"
 {
     PageType = List;
     SourceTable = "ADLSE Option";

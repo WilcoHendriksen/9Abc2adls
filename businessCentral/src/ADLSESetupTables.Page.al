@@ -187,6 +187,23 @@ page 82561 "ADLSE Setup Tables"
                 end;
             }
 
+            action(ResetAll)
+            {
+                ApplicationArea = All;
+                Caption = 'Reset all';
+                ToolTip = 'Resets all tables for all companies';
+                Image = ResetStatus;
+                Enabled = NoExportInProgress;
+
+                trigger OnAction()
+                var
+                    ADLSEReset: Codeunit "ADLSE Reset";
+                begin
+                    ADLSEReset.ResetAll();
+                    CurrPage.Update();
+                end;
+            }
+
             action(Logs)
             {
                 ApplicationArea = All;

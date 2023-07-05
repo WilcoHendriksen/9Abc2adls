@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
-page 82576 "ADLSE Schedule"
+page 82592 "ADLSE Schedule"
 {
     PageType = Card;
     Caption = 'Schedule multi company export';
@@ -123,6 +123,23 @@ page 82576 "ADLSE Schedule"
             }
         }
     }
+
+    trigger OnInit()
+    var
+        ADLSECurrentSession: Record "ADLSE Current Session";
+    begin
+        // set defaults
+        RunOnMonday := true;
+        RunOnTuesDay := true;
+        RunOnWednesday := true;
+        RunOnThursday := true;
+        RunOnFriday := true;
+        RunOnSaturday := false;
+        RunOnSunday := false;
+        TimeToRun := CurrentDateTime() + (60 * 1000); // in 1 minute
+        MinutesBetweenRuns := 15;
+    end;
+
     var
         RunOnMonday: Boolean;
         RunOnTuesDay: Boolean;
