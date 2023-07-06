@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
-codeunit 82574 "ADLSE Import/Export config"
+codeunit 82590 "ADLSE Import/Export config"
 {
     Access = Internal;
 

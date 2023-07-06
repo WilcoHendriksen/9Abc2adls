@@ -139,36 +139,6 @@ page 82561 "ADLSE Setup Tables"
                 end;
             }
 
-            action(Import)
-            {
-                ApplicationArea = All;
-                Caption = 'Import config';
-                Tooltip = 'Import tables and field that need to be exported';
-                Image = Import;
-
-                trigger OnAction()
-                var
-                    ImportConfig: Codeunit "ADLSE Import/Export config";
-                begin
-                    ImportConfig.Import()
-                end;
-            }
-
-            action(Export)
-            {
-                ApplicationArea = All;
-                Caption = 'Export config';
-                Tooltip = 'Export tables and fields';
-                Image = Export;
-
-                trigger OnAction()
-                var
-                    ExportConfig: Codeunit "ADLSE Import/Export config";
-                begin
-                    ExportConfig.Export()
-                end;
-            }
-
             action(Reset)
             {
                 ApplicationArea = All;
@@ -214,6 +184,39 @@ page 82561 "ADLSE Setup Tables"
                 begin
                     CurrPage.Update();
                 end;
+            }
+
+            group("Import/Export")
+            {
+                action(Import)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Import config';
+                    Tooltip = 'Import tables and field that need to be exported';
+                    Image = Import;
+
+                    trigger OnAction()
+                    var
+                        ImportConfig: Codeunit "ADLSE Import/Export config";
+                    begin
+                        ImportConfig.Import()
+                    end;
+                }
+
+                action(Export)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Export config';
+                    Tooltip = 'Export tables and fields';
+                    Image = Export;
+
+                    trigger OnAction()
+                    var
+                        ExportConfig: Codeunit "ADLSE Import/Export config";
+                    begin
+                        ExportConfig.Export()
+                    end;
+                }
             }
         }
     }

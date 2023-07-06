@@ -1,4 +1,4 @@
-table 82567 "ADLSE Option"
+table 82591 "ADLSE Option"
 {
     Caption = 'ADLSE Option';
     DataClassification = ToBeClassified;
