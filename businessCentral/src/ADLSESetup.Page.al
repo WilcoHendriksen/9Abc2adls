@@ -125,6 +125,51 @@ page 82560 "ADLSE Setup"
     {
         area(Processing)
         {
+            action(ScheduleMultiCompany)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Schedule Multi Company';
+                Tooltip = 'Schedules the export process as a job queue entry for mulitple companies';
+                Image = Timesheet;
+
+                trigger OnAction()
+                var
+                    "ADLSESchedule": Page "ADLSE Schedule";
+                begin
+                    ADLSESchedule.Run();
+                end;
+            }
+            action(ResetAll)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Reset all';
+                ToolTip = 'Resets all tables for all companies';
+                Image = ResetStatus;
+                Enabled = Not ExportInProgress;
+
+                trigger OnAction()
+                var
+                    ADLSEReset: Codeunit "ADLSE Reset";
+                begin
+                    ADLSEReset.ResetAll();
+                    CurrPage.Update();
+                end;
+            }
+            action(FillOptionTable)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Refresh enumerations';
+                Tooltip = 'Fills the ADLSE option table, which then can be used to export enumerations';
+                Image = Export;
+
+                trigger OnAction()
+                var
+                    ADLSEOption: Page "ADLSE Option";
+                begin
+                    ADLSEOption.Run();
+                end;
+            }
+
             action(ExportNow)
             {
                 ApplicationArea = All;
@@ -185,25 +230,6 @@ page 82560 "ADLSE Setup"
                 end;
             }
 
-            action(ScheduleMultiCompany)
-            {
-                ApplicationArea = All;
-                Caption = 'Schedule Multi Company';
-                Tooltip = 'Schedules the export process as a job queue entry for mulitple companies';
-                Promoted = true;
-                PromotedIsBig = true;
-                PromotedCategory = Process;
-                PromotedOnly = true;
-                Image = Timesheet;
-
-                trigger OnAction()
-                var
-                    "ADLSESchedule": Page "ADLSE Schedule";
-                begin
-                    ADLSESchedule.Run();
-                end;
-            }
-
             action(ClearDeletedRecordsList)
             {
                 ApplicationArea = All;
@@ -241,25 +267,6 @@ page 82560 "ADLSE Setup"
                 begin
                     ADLSERun.DeleteOldRuns();
                     CurrPage.Update();
-                end;
-            }
-
-            action(FillOptionTable)
-            {
-                ApplicationArea = All;
-                Caption = 'Refresh enumerations';
-                Tooltip = 'Fills the ADLSE option table, which then can be used to export enumerations';
-                Promoted = true;
-                PromotedIsBig = true;
-                PromotedCategory = Process;
-                PromotedOnly = true;
-                Image = Export;
-
-                trigger OnAction()
-                var
-                    ADLSEOption: Page "ADLSE Option";
-                begin
-                    ADLSEOption.Run();
                 end;
             }
         }
