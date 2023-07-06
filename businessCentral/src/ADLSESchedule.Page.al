@@ -99,7 +99,7 @@ page 82592 "ADLSE Schedule"
                     ADLSESchedule: Codeunit "ADLSE Schedule";
                 begin
                     ADLSESchedule.ScheduleMultiExport(RunOnMonday, RunOnTuesDay, RunOnWednesday, RunOnThursday, RunOnFriday, RunOnSaturday, RunOnSunday, TimeToRun, MinutesBetweenRuns);
-                    Message('The jobs are scheduled');
+                    Message('The jobs are scheduled for all companies');
                 end;
             }
             action(DeleteScheduleMultiCompany)
@@ -118,7 +118,7 @@ page 82592 "ADLSE Schedule"
                     ADLSESchedule: Codeunit "ADLSE Schedule";
                 begin
                     ADLSESchedule.DeleteScheduleMultiExport();
-                    Message('Delete scheduled jobs');
+                    Message('Deleted scheduled jobs for all companies');
                 end;
             }
         }
