@@ -4,7 +4,7 @@ codeunit 82592 "ADLSE Schedule"
 {
     var
         JobCategoryCodeTxt: Label 'ADLSEMC';
-        JobCategoryDescriptionTxt: Label 'Export to Azure Data Lake MC';
+        JobCategoryDescriptionTxt: Label 'Export to ADLSE multi company';
 
     /// <summary>
     ///  Schedule a job for multiple companies

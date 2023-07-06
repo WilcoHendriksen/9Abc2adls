@@ -10,7 +10,7 @@ codeunit 82593 "ADLSE Reset"
     procedure ResetAll()
     var
         Company: Record "Company";
-        Counter: Integer;
+        CompanyResetAmount: Integer;
     begin
         // find all companies and iterate through them
         if Company.FindSet() then
@@ -18,9 +18,9 @@ codeunit 82593 "ADLSE Reset"
                 // skip the empty one
                 if Company.Name <> '' then
                     ResetAllForAllCompany(Company.Name);
-                Counter += 1;
+                CompanyResetAmount += 1;
             until Company.Next() = 0;
-        Message(TablesResetTxt, Counter);
+        Message(TablesResetTxt, CompanyResetAmount);
     end;
 
     /// <summary>

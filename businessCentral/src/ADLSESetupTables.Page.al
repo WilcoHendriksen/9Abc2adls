@@ -138,6 +138,7 @@ page 82561 "ADLSE Setup Tables"
                     DoChooseFields();
                 end;
             }
+
             action(Reset)
             {
                 ApplicationArea = All;
@@ -152,6 +153,35 @@ page 82561 "ADLSE Setup Tables"
                 begin
                     CurrPage.SetSelectionFilter(SelectedADLSETable);
                     SelectedADLSETable.ResetSelected();
+                    CurrPage.Update();
+                end;
+            }
+
+            action(Logs)
+            {
+                ApplicationArea = All;
+                Caption = 'Execution logs';
+                ToolTip = 'View the execution logs for this table in the currently opened company.';
+                Image = Log;
+
+                trigger OnAction()
+                var
+                    ADLSERun: Page "ADLSE Run";
+                begin
+                    ADLSERun.SetDisplayForTable(Rec."Table ID");
+                    ADLSERun.Run();
+                end;
+            }
+
+            action(RefreshPage)
+            {
+                ApplicationArea = All;
+                Caption = 'Refresh';
+                Tooltip = 'Refreshes the table values.';
+                Image = Refresh;
+
+                trigger OnAction()
+                begin
                     CurrPage.Update();
                 end;
             }
@@ -187,35 +217,6 @@ page 82561 "ADLSE Setup Tables"
                         ExportConfig.Export()
                     end;
                 }
-            }
-
-            action(Logs)
-            {
-                ApplicationArea = All;
-                Caption = 'Execution logs';
-                ToolTip = 'View the execution logs for this table in the currently opened company.';
-                Image = Log;
-
-                trigger OnAction()
-                var
-                    ADLSERun: Page "ADLSE Run";
-                begin
-                    ADLSERun.SetDisplayForTable(Rec."Table ID");
-                    ADLSERun.Run();
-                end;
-            }
-
-            action(RefreshPage)
-            {
-                ApplicationArea = All;
-                Caption = 'Refresh';
-                Tooltip = 'Refreshes the table values.';
-                Image = Refresh;
-
-                trigger OnAction()
-                begin
-                    CurrPage.Update();
-                end;
             }
         }
     }
