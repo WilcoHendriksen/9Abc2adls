@@ -60,7 +60,7 @@ page 82592 "ADLSE Schedule"
                         Tooltip = 'The job should run on sunday';
                     }
                 }
-                group("time")
+                group("Time")
                 {
                     field(TimeToRun; TimeToRun)
                     {
@@ -68,6 +68,15 @@ page 82592 "ADLSE Schedule"
                         Caption = 'Job start time';
                         Tooltip = 'At what time should the job should start';
 
+                        trigger OnLookup(var Text: Text): Boolean
+                        var
+                            DateTimeDialog: Page "Date-Time Dialog";
+                        begin
+                            DateTimeDialog.SetDateTime(TimeToRun);
+                            if DateTimeDialog.RunModal() = Action::OK then
+                                TimeToRun := DateTimeDialog.GetDateTime();
+                            exit;
+                        end;
                     }
                     field("MinutesBetweenRuns"; MinutesBetweenRuns)
                     {
