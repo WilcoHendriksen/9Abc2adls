@@ -92,7 +92,7 @@ page 82592 "ADLSE Schedule"
                 PromotedIsBig = true;
                 PromotedCategory = Process;
                 PromotedOnly = true;
-                Image = Export;
+                Image = Calendar;
 
                 trigger OnAction()
                 var
