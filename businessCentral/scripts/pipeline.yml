@@ -1,0 +1,24 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'Windows-Latest'
+
+jobs:
+- job: Build
+  timeoutInMinutes: 300
+  variables:
+    build.clean: all
+    platform: x64
+    version: 'ci'
+    appVersion: '2.0'
+    appBuild: $(Build.BuildID)
+
+  steps:
+  - task: PowerShell@2
+    displayName: 'Run Pipeline'
+    inputs:
+      targetType: filePath
+      filePath: 'scripts\DevOps-Pipeline.ps1'
+      arguments: '-environment "AzureDevOps" -version "1.0" -appBuild $(appBuild) -appRevision $(appRevision)'
+      failOnStderr: true
