@@ -125,20 +125,6 @@ page 82560 "ADLSE Setup"
     {
         area(Processing)
         {
-            action(ScheduleMultiCompany)
-            {
-                ApplicationArea = Suite;
-                Caption = 'Schedule Multi Company';
-                Tooltip = 'Schedules the export process as a job queue entry for mulitple companies';
-                Image = Timesheet;
-
-                trigger OnAction()
-                var
-                    "ADLSESchedule": Page "ADLSE Schedule";
-                begin
-                    ADLSESchedule.Run();
-                end;
-            }
             action(ResetAll)
             {
                 ApplicationArea = Suite;
@@ -173,7 +159,7 @@ page 82560 "ADLSE Setup"
             action(ExportNow)
             {
                 ApplicationArea = All;
-                Caption = 'Export';
+                Caption = 'Export this company';
                 Tooltip = 'Starts the export process by spawning different sessions for each table. The action is disabled in case there are export processes currently running, also in other companies.';
                 Promoted = true;
                 PromotedIsBig = true;
@@ -194,7 +180,7 @@ page 82560 "ADLSE Setup"
             action(StopExport)
             {
                 ApplicationArea = All;
-                Caption = 'Stop export';
+                Caption = 'Stop export(s)';
                 Tooltip = 'Tries to stop all sessions that are exporting data, including those that are running in other companies.';
                 Promoted = true;
                 PromotedIsBig = true;
@@ -211,15 +197,30 @@ page 82560 "ADLSE Setup"
                 end;
             }
 
-            action(Schedule)
+            action(ScheduleMultiCompany)
             {
                 ApplicationArea = All;
-                Caption = 'Schedule export';
-                Tooltip = 'Schedules the export process as a job queue entry.';
+                Caption = 'Schedule Multi Company';
+                Tooltip = 'Schedules the export process as a job queue entry for mulitple companies';
                 Promoted = true;
                 PromotedIsBig = true;
                 PromotedCategory = Process;
                 PromotedOnly = true;
+                Image = Timesheet;
+
+                trigger OnAction()
+                var
+                    "ADLSESchedule": Page "ADLSE Schedule";
+                begin
+                    ADLSESchedule.Run();
+                end;
+            }
+
+            action(Schedule)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Schedule an export for this company';
+                Tooltip = 'Schedules the export process as a job queue entry for this company.';
                 Image = Timesheet;
 
                 trigger OnAction()
@@ -274,6 +275,13 @@ page 82560 "ADLSE Setup"
     var
         ClientSecretLbl: Label 'Secret not shown';
         ClientIdLbl: Label 'ID not shown';
+
+    trigger OnOpenPage()
+    var
+        ADLSECompany: Record "ADLSE Company";
+    begin
+        ADLSECompany.UpdateCompanies();
+    end;
 
     trigger OnInit()
     begin

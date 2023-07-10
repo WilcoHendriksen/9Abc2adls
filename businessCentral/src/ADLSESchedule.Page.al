@@ -14,9 +14,44 @@ page 82592 "ADLSE Schedule"
         {
             group("Schedule")
             {
+                group("Time")
+                {
+                    field(TimeToRun; TimeToRun)
+                    {
+                        ApplicationArea = All;
+                        Caption = 'Job start time';
+                        Tooltip = 'At what time should the job should start';
+
+                        trigger OnLookup(var Text: Text): Boolean
+                        var
+                            DateTimeDialog: Page "Date-Time Dialog";
+                        begin
+                            DateTimeDialog.SetDateTime(TimeToRun);
+                            if DateTimeDialog.RunModal() = Action::OK then
+                                TimeToRun := DateTimeDialog.GetDateTime();
+                            exit;
+                        end;
+                    }
+                }
+                group(Recurring)
+                {
+                    field(RecurringJob; RecurringJob)
+                    {
+                        ApplicationArea = All;
+                        Caption = 'Recurring job';
+                        Tooltip = 'Is the job recurring';
+                    }
+                    field("MinutesBetweenRuns"; MinutesBetweenRuns)
+                    {
+                        ApplicationArea = All;
+                        Caption = 'Minutes between runs';
+                        Tooltip = 'The number of minutes between the job is finished and the next one starts.';
+                    }
+                }
                 group(When)
                 {
-                    Editable = true;
+                    Enabled = RecurringJob;
+                    Editable = RecurringJob;
                     field(RunOnMonday; RunOnMonday)
                     {
                         ApplicationArea = All;
@@ -60,31 +95,11 @@ page 82592 "ADLSE Schedule"
                         Tooltip = 'The job should run on sunday';
                     }
                 }
-                group("Time")
-                {
-                    field(TimeToRun; TimeToRun)
-                    {
-                        ApplicationArea = All;
-                        Caption = 'Job start time';
-                        Tooltip = 'At what time should the job should start';
-
-                        trigger OnLookup(var Text: Text): Boolean
-                        var
-                            DateTimeDialog: Page "Date-Time Dialog";
-                        begin
-                            DateTimeDialog.SetDateTime(TimeToRun);
-                            if DateTimeDialog.RunModal() = Action::OK then
-                                TimeToRun := DateTimeDialog.GetDateTime();
-                            exit;
-                        end;
-                    }
-                    field("MinutesBetweenRuns"; MinutesBetweenRuns)
-                    {
-                        ApplicationArea = All;
-                        Caption = 'Minutes between runs';
-                        Tooltip = 'The number of minutes between the job is finished and the next one starts.';
-                    }
-                }
+            }
+            part(Companies; "ADLSE Setup Companies")
+            {
+                ApplicationArea = All;
+                UpdatePropagation = Both;
             }
         }
     }
@@ -96,7 +111,7 @@ page 82592 "ADLSE Schedule"
             {
                 ApplicationArea = All;
                 Caption = 'Schedule multi company';
-                Tooltip = 'Schedules a job for mulitple companies';
+                Tooltip = 'Schedules a job for multiple companies';
                 Promoted = true;
                 PromotedIsBig = true;
                 PromotedCategory = Process;
@@ -107,15 +122,15 @@ page 82592 "ADLSE Schedule"
                 var
                     ADLSESchedule: Codeunit "ADLSE Schedule";
                 begin
-                    ADLSESchedule.ScheduleMultiExport(RunOnMonday, RunOnTuesDay, RunOnWednesday, RunOnThursday, RunOnFriday, RunOnSaturday, RunOnSunday, TimeToRun, MinutesBetweenRuns);
-                    Message('The jobs are scheduled for all companies');
+                    ADLSESchedule.ScheduleMultiExport(RecurringJob, RunOnMonday, RunOnTuesDay, RunOnWednesday, RunOnThursday, RunOnFriday, RunOnSaturday, RunOnSunday, TimeToRun, MinutesBetweenRuns);
+                    Message('The one or more jobs are scheduled for the selected companies');
                 end;
             }
             action(DeleteScheduleMultiCompany)
             {
                 ApplicationArea = All;
                 Caption = 'Deletes all scheduled jobs';
-                Tooltip = 'Deletes all scheduled jobs for multiple companies';
+                Tooltip = 'Deletes all scheduled jobs for all companies';
                 Promoted = true;
                 PromotedIsBig = true;
                 PromotedCategory = Process;
@@ -127,7 +142,7 @@ page 82592 "ADLSE Schedule"
                     ADLSESchedule: Codeunit "ADLSE Schedule";
                 begin
                     ADLSESchedule.DeleteScheduleMultiExport();
-                    Message('Deleted scheduled jobs for all companies');
+                    Message('Deleted all scheduled jobs for all companies');
                 end;
             }
         }
@@ -138,6 +153,7 @@ page 82592 "ADLSE Schedule"
         ADLSECurrentSession: Record "ADLSE Current Session";
     begin
         // set defaults
+        RecurringJob := true;
         RunOnMonday := true;
         RunOnTuesDay := true;
         RunOnWednesday := true;
@@ -150,6 +166,7 @@ page 82592 "ADLSE Schedule"
     end;
 
     var
+        RecurringJob: Boolean;
         RunOnMonday: Boolean;
         RunOnTuesDay: Boolean;
         RunOnWednesday: Boolean;
