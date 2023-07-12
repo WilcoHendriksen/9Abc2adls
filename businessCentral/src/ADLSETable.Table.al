@@ -158,8 +158,12 @@ table 82561 "ADLSE Table"
     var
         ADLSEDeletedRecord: Record "ADLSE Deleted Record";
         ADLSETableLastTimestamp: Record "ADLSE Table Last Timestamp";
+        ADLSECommunication: Codeunit "ADLSE Communication";
+        ADLSEUtil: Codeunit "ADLSE Util";
         Counter: Integer;
     begin
+
+        ADLSECommunication.SetupBlobStorage();
         if Rec.FindSet(true) then
             repeat
                 Rec.Enabled := true;
@@ -170,6 +174,10 @@ table 82561 "ADLSE Table"
 
                 ADLSEDeletedRecord.SetRange("Table ID", Rec."Table ID");
                 ADLSEDeletedRecord.DeleteAll();
+
+                // delete data from storage for this table
+                ADLSECommunication.DeleteEntity(ADLSEUtil.GetDataLakeCompliantTableName(Rec."Table ID"));
+
                 Counter += 1;
             until Rec.Next() = 0;
         Message(TablesResetTxt, Counter);
