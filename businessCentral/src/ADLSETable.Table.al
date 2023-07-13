@@ -180,11 +180,8 @@ table 82561 "ADLSE Table"
                 Rec.Enabled := true;
                 Rec.Modify();
 
-                ADLSETableLastTimestamp.SaveUpdatedLastTimestamp(Rec."Table ID", 0);
-                ADLSETableLastTimestamp.SaveDeletedLastEntryNo(Rec."Table ID", 0);
-
-                ADLSEDeletedRecord.SetRange("Table ID", Rec."Table ID");
-                ADLSEDeletedRecord.DeleteAll();
+                ADLSETableLastTimestamp.ResetLastTimestampAndLastDeletedEntryNo(Rec."Table ID");
+                ADLSEDeletedRecord.ResetDeletedRecord(Rec."Table ID");
 
                 // delete old runs
                 ADLSERun.DeleteOldRunsForAllCompanies(Rec."Table ID");
