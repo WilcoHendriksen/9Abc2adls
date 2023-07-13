@@ -123,14 +123,14 @@ page 82592 "ADLSE Schedule"
                     ADLSESchedule: Codeunit "ADLSE Schedule";
                 begin
                     ADLSESchedule.ScheduleMultiExport(RecurringJob, RunOnMonday, RunOnTuesDay, RunOnWednesday, RunOnThursday, RunOnFriday, RunOnSaturday, RunOnSunday, TimeToRun, MinutesBetweenRuns);
-                    Message('The one or more jobs are scheduled for the selected companies');
+                    Message('One or more jobs are scheduled for the selected companies');
                 end;
             }
             action(DeleteScheduleMultiCompany)
             {
                 ApplicationArea = All;
                 Caption = 'Deletes all scheduled jobs';
-                Tooltip = 'Deletes all scheduled jobs for all companies';
+                Tooltip = 'Deletes scheduled jobs for all companies';
                 Promoted = true;
                 PromotedIsBig = true;
                 PromotedCategory = Process;
@@ -142,7 +142,7 @@ page 82592 "ADLSE Schedule"
                     ADLSESchedule: Codeunit "ADLSE Schedule";
                 begin
                     ADLSESchedule.DeleteScheduleMultiExport();
-                    Message('Deleted all scheduled jobs for all companies');
+                    Message('Deleted scheduled jobs for all companies');
                 end;
             }
         }
