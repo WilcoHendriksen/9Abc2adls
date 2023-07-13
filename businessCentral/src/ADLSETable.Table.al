@@ -160,6 +160,7 @@ table 82561 "ADLSE Table"
         ADLSETableLastTimestamp: Record "ADLSE Table Last Timestamp";
         ADLSECommunication: Codeunit "ADLSE Communication";
         ADLSEUtil: Codeunit "ADLSE Util";
+        ADLSERun: Record "ADLSE Run";
         Counter: Integer;
     begin
 
@@ -175,7 +176,9 @@ table 82561 "ADLSE Table"
                 ADLSEDeletedRecord.SetRange("Table ID", Rec."Table ID");
                 ADLSEDeletedRecord.DeleteAll();
 
-                // delete data from storage for this table
+                // delete old runs
+                ADLSERun.DeleteOldRunsForAllCompanies(Rec."Table ID");
+                // delete data from storage for the selected tables
                 ADLSECommunication.DeleteEntity(ADLSEUtil.GetDataLakeCompliantTableName(Rec."Table ID"));
 
                 Counter += 1;

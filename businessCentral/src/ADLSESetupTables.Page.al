@@ -151,6 +151,8 @@ page 82561 "ADLSE Setup Tables"
                 var
                     SelectedADLSETable: Record "ADLSE Table";
                 begin
+                    if not Dialog.Confirm('This will reset the state of the selected table(s) and delete the files from the data lake storage for all companies.\ \ Are you sure?') then
+                        exit;
                     CurrPage.SetSelectionFilter(SelectedADLSETable);
                     SelectedADLSETable.ResetSelected();
                     CurrPage.Update();

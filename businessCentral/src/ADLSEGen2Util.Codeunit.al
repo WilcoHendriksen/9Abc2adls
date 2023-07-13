@@ -200,13 +200,18 @@ codeunit 82568 "ADLSE Gen 2 Util"
     var
         ADLSEHttp: Codeunit "ADLSE Http";
         Response: Text;
-        test: Text;
-        url: Text;
+        StatusCode: Integer;
     begin
         ADLSEHttp.SetMethod("ADLSE Http Method"::Delete);
         ADLSEHttp.SetUrl(Path);
         ADLSEHttp.SetAuthorizationCredentials(ADLSECredentials);
-        if not ADLSEHttp.InvokeRestApi(Response) then
-            Error(CouldNotDeleteDataErr, Path, Response);
+        StatusCode := ADLSEHttp.InvokeRestApiWithReturn(Response);
+        if StatusCode = 200 then
+            exit; // file is deleted
+        if StatusCode = 404 then
+            exit; // file not found proceed
+
+        // someting went wrong
+        Error(CouldNotDeleteDataErr, Path, Response);
     end;
 }
