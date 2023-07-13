@@ -91,6 +91,7 @@ table 82561 "ADLSE Table"
         TableExportingDataErr: Label 'Data is being executed for table %1. Please wait for the export to finish before making changes.', Comment = '%1: table caption';
         TableCannotBeExportedErr: Label 'The table %1 cannot be exported because of the following error. \%2', Comment = '%1: Table ID, %2: error text';
         TablesResetTxt: Label '%1 table(s) were reset.', Comment = '%1 = number of tables that were reset';
+        ProgressText: Label 'Resetting #1\#2';
 
     procedure FieldsChosen(): Integer
     var
@@ -162,11 +163,20 @@ table 82561 "ADLSE Table"
         ADLSEUtil: Codeunit "ADLSE Util";
         ADLSERun: Record "ADLSE Run";
         Counter: Integer;
+        Progress: Dialog;
+        ProgressUpdate: Text;
+        DataLakeCompliantTableName: Text;
     begin
-
         ADLSECommunication.SetupBlobStorage();
-        if Rec.FindSet(true) then
+        if Rec.FindSet(true) then begin
+            ProgressUpdate := format(Counter) + ' of ' + format(Rec.Count);
+            Progress.Open(ProgressText, ProgressUpdate, DataLakeCompliantTableName);
             repeat
+                Counter += 1;
+                DataLakeCompliantTableName := ADLSEUtil.GetDataLakeCompliantTableName(Rec."Table ID");
+                ProgressUpdate := format(Counter) + ' of ' + format(Rec.Count);
+                Progress.Update();
+
                 Rec.Enabled := true;
                 Rec.Modify();
 
@@ -179,10 +189,11 @@ table 82561 "ADLSE Table"
                 // delete old runs
                 ADLSERun.DeleteOldRunsForAllCompanies(Rec."Table ID");
                 // delete data from storage for the selected tables
-                ADLSECommunication.DeleteEntity(ADLSEUtil.GetDataLakeCompliantTableName(Rec."Table ID"));
+                ADLSECommunication.DeleteEntity(DataLakeCompliantTableName);
 
-                Counter += 1;
             until Rec.Next() = 0;
+            Progress.Close();
+        end;
         Message(TablesResetTxt, Counter);
     end;
 
