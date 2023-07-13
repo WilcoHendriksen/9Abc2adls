@@ -41,8 +41,8 @@ page 82594 "ADLSE Setup Companies"
             action(ToggleCompanies)
             {
                 ApplicationArea = All;
-                Caption = 'Toggle companies';
-                Tooltip = 'Toggle companies for export';
+                Caption = 'Toggle enabled';
+                Tooltip = 'Toggle enabled companies for export';
                 Image = Company;
 
                 trigger OnAction()
