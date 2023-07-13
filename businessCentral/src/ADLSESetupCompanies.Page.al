@@ -34,6 +34,27 @@ page 82594 "ADLSE Setup Companies"
             }
         }
     }
+    actions
+    {
+        area(Processing)
+        {
+            action(ToggleCompanies)
+            {
+                ApplicationArea = All;
+                Caption = 'Toggle companies';
+                Tooltip = 'Toggle companies for export';
+                Image = Company;
+
+                trigger OnAction()
+                var
+                    ADLSECompany: Record "ADLSE Company";
+                begin
+                    ADLSECompany.ToggleCompanies();
+                    CurrPage.Update();
+                end;
+            }
+        }
+    }
 
     trigger OnAfterGetRecord()
     var

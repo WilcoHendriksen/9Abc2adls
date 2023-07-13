@@ -24,6 +24,15 @@ table 82594 "ADLSE Company"
         }
     }
 
+    procedure ToggleCompanies()
+    begin
+        if Rec.FindSet() then
+            repeat
+                Rec.Enabled := not Rec.Enabled;
+                Rec.Modify()
+            until Rec.Next() = 0;
+    end;
+
     procedure UpdateCompanies()
     var
         Company: Record Company;
