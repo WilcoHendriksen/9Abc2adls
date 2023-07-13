@@ -23,6 +23,7 @@ codeunit 82562 "ADLSE Communication"
         DataCdmManifestNameTxt: Label 'data.manifest.cdm.json', Locked = true;
         EntityManifestNameTemplateTxt: Label '%1.cdm.json', Locked = true, Comment = '%1 = Entity name';
         ContainerUrlTxt: Label 'https://%1.blob.core.windows.net/%2', Comment = '%1: Account name, %2: Container Name';
+        DeleteFolderTxt: Label 'https://%1.dfs.core.windows.net/%2/deltas/%3?recursive=true', Comment = '%1: Account name, %2: Container Name , %3: Folder name';
         CorpusJsonPathTxt: Label '/%1', Comment = '%1 = name of the blob', Locked = true;
         CannotAddedMoreBlocksErr: Label 'The number of blocks that can be added to the blob has reached its maximum limit.';
         SingleRecordTooLargeErr: Label 'A single record payload exceeded the max payload size. Please adjust the payload size or reduce the fields to be exported for the record.';
@@ -50,6 +51,17 @@ codeunit 82562 "ADLSE Communication"
             DefaultContainerName := ADLSESetup.Container;
         end;
         exit(StrSubstNo(ContainerUrlTxt, ADLSECredentials.GetStorageAccount(), DefaultContainerName));
+    end;
+
+    local procedure GetDeleteFolderUrl(Folder: Text): Text
+    var
+        ADLSESetup: Record "ADLSE Setup";
+    begin
+        if DefaultContainerName = '' then begin
+            ADLSESetup.GetSingleton();
+            DefaultContainerName := ADLSESetup.Container;
+        end;
+        exit(StrSubstNo(DeleteFolderTxt, ADLSECredentials.GetStorageAccount(), DefaultContainerName, Folder));
     end;
 
     procedure Init(TableIDValue: Integer; FieldIdListValue: List of [Integer]; LastFlushedTimeStampValue: BigInteger; EmitTelemetryValue: Boolean)
@@ -301,4 +313,11 @@ codeunit 82562 "ADLSE Communication"
         ADLSEGen2Util.ReleaseBlob(BlobPath, ADLSECredentials, LeaseID);
     end;
 
+    procedure DeleteEntity(DataLakeCompliantTableName: Text)
+    var
+        ADLSEGen2Util: Codeunit "ADLSE Gen 2 Util";
+    begin
+        ADLSEGen2Util.DeleteData(GetBaseUrl() + '/' + StrSubstNo(EntityManifestNameTemplateTxt, DataLakeCompliantTableName), ADLSECredentials);
+        ADLSEGen2Util.DeleteData(GetDeleteFolderUrl(DataLakeCompliantTableName), ADLSECredentials);
+    end;
 }

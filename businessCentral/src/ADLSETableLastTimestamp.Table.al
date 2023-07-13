@@ -76,6 +76,20 @@ table 82564 "ADLSE Table Last Timestamp"
             ADLSEExecution.Log('ADLSE-032', StrSubstNo(SaveUpsertLastTimestampFailedErr, ADLSEUtil.GetTableCaption(TableID)), Verbosity::Error);
     end;
 
+    procedure ResetLastTimestampAndLastDeletedEntryNo(TableID: Integer)
+    var
+        Counter: Integer;
+    begin
+        Rec.SetRange("Table ID", TableID);
+        if Rec.FindSet(true) then begin
+            repeat
+                Rec."Updated Last Timestamp" := 0;
+                Rec."Deleted Last Entry No." := 0;
+                Rec.Modify();
+            until Rec.Next() = 0;
+        end;
+    end;
+
     procedure SaveUpdatedLastTimestamp(TableID: Integer; Timestamp: BigInteger)
     var
         ADLSEUtil: Codeunit "ADLSE Util";

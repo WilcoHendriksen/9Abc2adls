@@ -125,22 +125,6 @@ page 82560 "ADLSE Setup"
     {
         area(Processing)
         {
-            action(ResetAll)
-            {
-                ApplicationArea = Suite;
-                Caption = 'Reset all';
-                ToolTip = 'Resets all tables for all companies';
-                Image = ResetStatus;
-                Enabled = Not ExportInProgress;
-
-                trigger OnAction()
-                var
-                    ADLSEReset: Codeunit "ADLSE Reset";
-                begin
-                    ADLSEReset.ResetAll();
-                    CurrPage.Update();
-                end;
-            }
             action(FillOptionTable)
             {
                 ApplicationArea = Suite;

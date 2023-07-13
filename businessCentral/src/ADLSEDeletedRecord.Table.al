@@ -68,4 +68,21 @@ table 82563 "ADLSE Deleted Record"
         "Deletion Timestamp" += 1; // to mark an update that is greater than the last time stamp on this record
         Insert();
     end;
+
+    procedure ResetDeletedRecord(TableId: Integer)
+    var
+        Company: Record "Company";
+    begin
+        // find all companies and iterate through them;
+        if Company.FindSet() then
+            repeat
+                // skip the empty one
+                if Company.Name <> '' then
+                    Rec.ChangeCompany(Company.Name);
+                Rec.SetRange("Table ID", TableId);
+                if Rec.FindSet() then begin
+                    Rec.DeleteAll();
+                end;
+            until Company.Next() = 0;
+    end;
 }

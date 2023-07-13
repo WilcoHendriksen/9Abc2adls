@@ -172,6 +172,13 @@ table 82566 "ADLSE Run"
         DeleteOldRuns();
     end;
 
+    procedure DeleteOldRunsForAllCompanies(TableID: Integer)
+    begin
+        Rec.SetFilter(State, '<>%1', "ADLSE Run State"::InProcess);
+        Rec.SetRange("Table ID", TableID);
+        Rec.DeleteAll();
+    end;
+
     local procedure FindLastRun(TableID: Integer) Found: Boolean
     begin
         Rec.SetCurrentKey(ID);
