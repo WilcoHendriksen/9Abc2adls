@@ -201,7 +201,7 @@ page 82560 "ADLSE Setup"
             {
                 ApplicationArea = All;
                 Caption = 'Schedule Multi Company';
-                Tooltip = 'Schedules the export process as a job queue entry for mulitple companies';
+                Tooltip = 'Schedules the export process as a job queue entry for multiple companies';
                 Promoted = true;
                 PromotedIsBig = true;
                 PromotedCategory = Process;

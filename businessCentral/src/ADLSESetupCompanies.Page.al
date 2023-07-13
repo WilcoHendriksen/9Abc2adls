@@ -38,7 +38,6 @@ page 82594 "ADLSE Setup Companies"
     trigger OnAfterGetRecord()
     var
         Company: Record Company;
-        ADLSEUtil: Codeunit "ADLSE Util";
     begin
         Company.SetRange(Id, Rec.CompanyId);
         if Company.FindFirst() then
