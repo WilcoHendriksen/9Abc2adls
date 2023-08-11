@@ -264,6 +264,19 @@ codeunit 82561 "ADLSE Execute"
             ADLSEExecution.Log('ADLSE-011', 'Deleted records exported', Verbosity::Normal, CustomDimensions);
     end;
 
+    procedure ExportManifest(TableID: Integer)
+    var
+        FieldIdList: List of [Integer];
+        UpdatedLastTimestamp: BigInteger;
+        ADLSETableLastTimestamp: Record "ADLSE Table Last Timestamp";
+        ADLSECommunication: Codeunit "ADLSE Communication";
+    begin
+        FieldIdList := CreateFieldListForTable(TableID);
+        UpdatedLastTimestamp := ADLSETableLastTimestamp.GetUpdatedLastTimestamp(TableID);
+        ADLSECommunication.Init(TableID, FieldIdList, UpdatedLastTimeStamp, EmitTelemetry);
+        ADLSECommunication.TryUpdateCdmJsons(true, true);
+    end;
+
     local procedure CreateFieldListForTable(TableID: Integer) FieldIdList: List of [Integer]
     var
         ADLSEField: Record "ADLSE Field";

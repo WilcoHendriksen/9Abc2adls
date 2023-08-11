@@ -12,10 +12,43 @@ codeunit 82569 "ADLSE Execution"
     var
         EmitTelemetry: Boolean;
         ExportStartedTxt: Label 'Data export started for %1 out of %2 tables. Please refresh this page to see the latest export state for the tables. Only those tables that either have had changes since the last export or failed to export last time have been included. The tables for which the exports could not be started have been queued up for later.', Comment = '%1 = number of tables to start the export for. %2 = total number of tables enabled for export.';
+        ExportManifestTxt: Label 'Export manifest with table id %1', Comment = '%1 = table id for which a manifest will be created.';
         SuccessfulStopMsg: Label 'The export process was stopped successfully.';
         JobCategoryCodeTxt: Label 'ADLSE';
         JobCategoryDescriptionTxt: Label 'Export to Azure Data Lake';
         JobScheduledTxt: Label 'The job has been scheduled. Please go to the Job Queue Entries page to locate it and make further changes.';
+
+    procedure StartExportManifests()
+    var
+        ADLSETable: Record "ADLSE Table";
+        ADLSEField: Record "ADLSE Field";
+        Counter: Integer;
+        ADLSEExecute: Codeunit "ADLSE Execute";
+        ADLSECommunication: Codeunit "ADLSE Communication";
+        ADLSESetupRec: Record "ADLSE Setup";
+        Progress: Dialog;
+    begin
+        ADLSECommunication.SetupBlobStorage();
+        EmitTelemetry := ADLSESetupRec."Emit telemetry";
+        if EmitTelemetry then
+            Log('ADLSE-901', 'Starting export for all manifests', Verbosity::Normal);
+        Progress.Open('Exporting manifests...');
+
+        ADLSETable.SetRange(Enabled, true);
+        if ADLSETable.FindSet(false) then
+            repeat
+                Counter += 1;
+                ADLSEField.SetRange("Table ID", ADLSETable."Table ID");
+                ADLSEField.SetRange(Enabled, true);
+                if not ADLSEField.IsEmpty() then begin
+                    if EmitTelemetry then
+                        Log('ADLSE-902', StrSubstNo(ExportManifestTxt, ADLSETable."Table ID"), Verbosity::Normal);
+                    ADLSEExecute.ExportManifest(ADLSETable."Table ID");
+                end;
+            until ADLSETable.Next() = 0;
+        if EmitTelemetry then
+            Log('ADLSE-903', 'Finished export for all manifests', Verbosity::Normal);
+    end;
 
     procedure StartExport()
     var

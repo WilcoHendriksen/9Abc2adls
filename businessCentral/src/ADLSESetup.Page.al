@@ -140,6 +140,27 @@ page 82560 "ADLSE Setup"
                 end;
             }
 
+            action(ExportManifests)
+            {
+                ApplicationArea = All;
+                Caption = 'Export manifests';
+                Tooltip = 'Starts the export of all manifests';
+                Promoted = true;
+                PromotedIsBig = true;
+                PromotedCategory = Process;
+                PromotedOnly = true;
+                Image = Start;
+                Enabled = not ExportInProgress;
+
+                trigger OnAction()
+                var
+                    ADLSEExecution: Codeunit "ADLSE Execution";
+                begin
+                    ADLSEExecution.StartExportManifests();
+                    CurrPage.Update();
+                end;
+            }
+
             action(ExportNow)
             {
                 ApplicationArea = All;
