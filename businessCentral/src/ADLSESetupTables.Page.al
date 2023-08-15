@@ -168,10 +168,9 @@ page 82561 "ADLSE Setup Tables"
 
                 trigger OnAction()
                 var
-                    ADLSERun: Page "ADLSE Run";
+                    ADLSERun2: Page "ADLSE Run2";
                 begin
-                    ADLSERun.SetDisplayForTable(Rec."Table ID");
-                    ADLSERun.Run();
+                    ADLSERun2.Run();
                 end;
             }
 
