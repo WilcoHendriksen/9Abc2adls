@@ -28,7 +28,6 @@ codeunit 82592 "ADLSE Schedule"
         ADLSEExecution: Codeunit "ADLSE Execution";
         ScheduleAJob: Page "Schedule a Job";
         CurrCompany: Text;
-        TimeToRunJob: DateTime;
     begin
         ADLSECompany.SetRange(Enabled, true);
         if not ADLSECompany.FindSet() then
