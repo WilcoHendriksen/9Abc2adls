@@ -58,24 +58,6 @@ table 82560 "ADLSE Setup"
             Caption = 'Emit telemetry';
             InitValue = true;
         }
-
-        field(15; "Multi- Company Export"; Boolean)
-        {
-            Caption = 'Multi- company export';
-            InitValue = false;
-
-            trigger OnValidate()
-            var
-                ADLSECurrentSession: Record "ADLSE Current Session";
-            begin
-                if Rec."Multi- Company Export" = xRec."Multi- Company Export" then
-                    exit;
-
-                // ensure that no current export sessions running
-                ADLSECurrentSession.CheckForNoActiveSessions();
-            end;
-        }
-
         field(20; "Skip Timestamp Sorting On Recs"; Boolean)
         {
             Caption = 'Skip row version sorting';
@@ -126,12 +108,6 @@ table 82560 "ADLSE Setup"
     local procedure Exists(): Boolean
     begin
         exit(Rec.Get(GetPrimaryKeyValue()));
-    end;
-
-    procedure CheckNoSimultaneousExportsAllowed()
-    begin
-        Rec.GetSingleton();
-        Rec.TestField("Multi- Company Export", false, ErrorInfo.Create(NoChangesAllowedErr));
     end;
 
     local procedure GetPrimaryKeyValue() PKValue: Integer

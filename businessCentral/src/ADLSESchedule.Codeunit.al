@@ -33,7 +33,7 @@ codeunit 82592 "ADLSE Schedule"
         if not ADLSECompany.FindSet() then
             exit;
 
-        CurrCompany := CompanyName;
+        CurrCompany := CompanyName();
         repeat
             // get company name from company table
             Company.SetRange(Id, ADLSECompany.CompanyId);
