@@ -35,14 +35,12 @@ codeunit 82592 "ADLSE Schedule"
             exit;
 
         CurrCompany := CompanyName();
-        TimeToRunJob := TimeToRun;
         repeat
             // get company name from company table
             Company.SetRange(Id, ADLSECompany.CompanyId);
             if Company.FindFirst() then begin
                 JobQueueEntry.ChangeCompany(Company.Name);
-                CreateJobQueueEntry(JobQueueEntry, RecurringJob, Monday, Tuesday, Wednesday, Thursdays, Friday, Saturday, Sunday, TimeToRunJob, MinBetweenRuns);
-                TimeToRunJob := TimeToRunJob + (60 * 1000); // add 1 minute for next company to a bit out of sync
+                CreateJobQueueEntry(JobQueueEntry, RecurringJob, Monday, Tuesday, Wednesday, Thursdays, Friday, Saturday, Sunday, TimeToRun, MinBetweenRuns);
                 Commit();
                 Clear(JobQueueEntry.ID); // "Job Queue - Enqueue" defines it on the real record insert
                 CODEUNIT.Run(CODEUNIT::"Job Queue - Enqueue", JobQueueEntry);

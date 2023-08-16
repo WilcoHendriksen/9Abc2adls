@@ -20,8 +20,6 @@ codeunit 82561 "ADLSE Execute"
         DeletedLastEntryNo: BigInteger;
         OldUpdatedLastTimestamp: BigInteger;
         OldDeletedLastEntryNo: BigInteger;
-        EntityJsonNeedsUpdate: Boolean;
-        ManifestJsonsNeedsUpdate: Boolean;
         ExportSuccess: Boolean;
     begin
         ADLSESetup.GetSingleton();
@@ -53,7 +51,7 @@ codeunit 82561 "ADLSE Execute"
         // Perform the export 
         OldUpdatedLastTimestamp := UpdatedLastTimestamp;
         OldDeletedLastEntryNo := DeletedLastEntryNo;
-        ExportSuccess := TryExportTableData(Rec."Table ID", ADLSECommunication, UpdatedLastTimestamp, DeletedLastEntryNo, EntityJsonNeedsUpdate, ManifestJsonsNeedsUpdate);
+        ExportSuccess := TryExportTableData(Rec."Table ID", ADLSECommunication, UpdatedLastTimestamp, DeletedLastEntryNo);
         if not ExportSuccess then
             ADLSERun.RegisterErrorInProcess(Rec."Table ID", EmitTelemetry, TableCaption);
 
@@ -62,8 +60,6 @@ codeunit 82561 "ADLSE Execute"
             CustomDimensions.Add('Entity', TableCaption);
             CustomDimensions.Add('Updated Last time stamp', Format(UpdatedLastTimestamp));
             CustomDimensions.Add('Deleted Last entry no.', Format(DeletedLastEntryNo));
-            CustomDimensions.Add('Entity Json needs update', Format(EntityJsonNeedsUpdate));
-            CustomDimensions.Add('Manifest Json needs update', Format(ManifestJsonsNeedsUpdate));
             ADLSEExecution.Log('ADLSE-020', 'Exported to deltas CDM folder', Verbosity::Normal, CustomDimensions);
         end;
 
@@ -86,14 +82,6 @@ codeunit 82561 "ADLSE Execute"
             Commit(); // to save the last time stamps into the database.
         end;
 
-        // update Jsons
-        if not ADLSECommunication.TryUpdateCdmJsons(EntityJsonNeedsUpdate, ManifestJsonsNeedsUpdate) then begin
-            SetStateFinished(Rec, TableCaption);
-            exit;
-        end;
-        if EmitTelemetry then
-            ADLSEExecution.Log('ADLSE-007', 'Jsons have been updated', Verbosity::Normal, CustomDimensions);
-
         // Finalize
         SetStateFinished(Rec, TableCaption);
         if EmitTelemetry then
@@ -111,8 +99,7 @@ codeunit 82561 "ADLSE Execute"
 
     [TryFunction]
     local procedure TryExportTableData(TableID: Integer; var ADLSECommunication: Codeunit "ADLSE Communication";
-        var UpdatedLastTimeStamp: BigInteger; var DeletedLastEntryNo: BigInteger;
-        var EntityJsonNeedsUpdate: Boolean; var ManifestJsonsNeedsUpdate: Boolean)
+        var UpdatedLastTimeStamp: BigInteger; var DeletedLastEntryNo: BigInteger)
     var
         ADLSECommunicationDeletions: Codeunit "ADLSE Communication";
         FieldIdList: List of [Integer];
@@ -121,7 +108,6 @@ codeunit 82561 "ADLSE Execute"
 
         // first export the upserts
         ADLSECommunication.Init(TableID, FieldIdList, UpdatedLastTimeStamp, EmitTelemetry);
-        ADLSECommunication.CheckEntity(CDMDataFormat, EntityJsonNeedsUpdate, ManifestJsonsNeedsUpdate);
         ExportTableUpdates(TableID, FieldIdList, ADLSECommunication, UpdatedLastTimeStamp);
 
         // then export the deletes

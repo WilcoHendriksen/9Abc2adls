@@ -88,46 +88,6 @@ codeunit 82562 "ADLSE Communication"
         end;
     end;
 
-    procedure CheckEntity(CdmDataFormat: Enum "ADLSE CDM Format"; var EntityJsonNeedsUpdate: Boolean; var ManifestJsonsNeedsUpdate: Boolean)
-    var
-        ADLSESetup: Record "ADLSE Setup";
-        ADLSECdmUtil: Codeunit "ADLSE CDM Util";
-        ADLSEGen2Util: Codeunit "ADLSE Gen 2 Util";
-        ADLSEExecution: Codeunit "ADLSE Execution";
-        OldJson: JsonObject;
-        NewJson: JsonObject;
-        BlobExists: Boolean;
-        BlobEntityPath: Text;
-    begin
-        // check entity
-        EntityJson := ADLSECdmUtil.CreateEntityContent(TableID, FieldIdList);
-        BlobEntityPath := StrSubstNo(CorpusJsonPathTxt, StrSubstNo(EntityManifestNameTemplateTxt, EntityName));
-        OldJson := ADLSEGen2Util.GetBlobContent(GetBaseUrl() + BlobEntityPath, ADLSECredentials, BlobExists);
-        if BlobExists then
-            ADLSECdmUtil.CheckChangeInEntities(OldJson, EntityJson, EntityName);
-        if not ADLSECdmUtil.CompareEntityJsons(OldJson, EntityJson) then begin
-            if EmitTelemetry then
-                ADLSEExecution.Log('ADLSE-028', GetLastErrorText() + GetLastErrorCallStack(), Verbosity::Warning);
-            ClearLastError();
-
-            EntityJsonNeedsUpdate := true;
-            JsonsDifferent(OldJson, EntityJson); // to log the difference
-        end;
-
-        // check manifest. Assume that if the data manifest needs change, the delta manifest will also need be updated
-        OldJson := ADLSEGen2Util.GetBlobContent(GetBaseUrl() + StrSubstNo(CorpusJsonPathTxt, DataCdmManifestNameTxt), ADLSECredentials, BlobExists);
-        NewJson := ADLSECdmUtil.UpdateDefaultManifestContent(OldJson, TableID, 'data', CdmDataFormat);
-        ManifestJsonsNeedsUpdate := JsonsDifferent(OldJson, NewJson);
-
-        ADLSESetup.GetSingleton();
-        if ADLSESetup."Multi- Company Export" then begin
-            if EntityJsonNeedsUpdate then
-                Error(EntitySchemaChangedErr, EntityName, NotAllowedOnSimultaneousExportTxt);
-            if ManifestJsonsNeedsUpdate then
-                Error(CdmSchemaChangedErr, NotAllowedOnSimultaneousExportTxt);
-        end;
-    end;
-
     local procedure JsonsDifferent(Json1: JsonObject; Json2: JsonObject) Result: Boolean
     var
         ADLSEExecution: Codeunit "ADLSE Execution";
@@ -291,7 +251,6 @@ codeunit 82562 "ADLSE Communication"
             ADLSESetup.LockTable(true);
             ADLSESetup.GetSingleton();
 
-            UpdateManifest(GetBaseUrl() + StrSubstNo(CorpusJsonPathTxt, DataCdmManifestNameTxt), 'data', ADLSESetup.DataFormat);
             UpdateManifest(GetBaseUrl() + StrSubstNo(CorpusJsonPathTxt, DeltaCdmManifestNameTxt), 'deltas', "ADLSE CDM Format"::Csv);
             Commit(); // to release the lock above
         end;

@@ -37,7 +37,6 @@ codeunit 82569 "ADLSE Execution"
         ADLSETable.SetRange(Enabled, true);
         if ADLSETable.FindSet(false) then
             repeat
-                Counter += 1;
                 ADLSEField.SetRange("Table ID", ADLSETable."Table ID");
                 ADLSEField.SetRange(Enabled, true);
                 if not ADLSEField.IsEmpty() then begin

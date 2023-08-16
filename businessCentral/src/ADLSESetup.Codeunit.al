@@ -81,9 +81,6 @@ codeunit 82560 "ADLSE Setup"
     begin
         ADLSESetup.GetSingleton();
         ADLSESetup.TestField(Container);
-        if not ADLSESetup."Multi- Company Export" then
-            if ADLSECurrentSession.AreAnySessionsActive() then
-                ADLSECurrentSession.CheckForNoActiveSessions();
 
         ADLSECredentials.Check();
     end;
