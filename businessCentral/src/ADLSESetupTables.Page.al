@@ -55,6 +55,7 @@ page 82561 "ADLSE Setup Tables"
                     ApplicationArea = All;
                     Caption = 'Last exported state';
                     Editable = false;
+                    Visible = false;
                     Tooltip = 'Specifies the status of the last export from this table in this company.';
                 }
                 field(LastRanAt; LastStarted)
@@ -62,6 +63,7 @@ page 82561 "ADLSE Setup Tables"
                     ApplicationArea = All;
                     Caption = 'Last started at';
                     Editable = false;
+                    Visible = false;
                     Tooltip = 'Specifies the time of the last export from this table in this company.';
                 }
                 field(LastError; LastRunError)
@@ -69,6 +71,7 @@ page 82561 "ADLSE Setup Tables"
                     ApplicationArea = All;
                     Caption = 'Last error';
                     Editable = false;
+                    Visible = false;
                     ToolTip = 'Specifies the error message from the last export of this table in this company.';
                 }
                 field(LastTimestamp; UpdatedLastTimestamp)
@@ -171,19 +174,6 @@ page 82561 "ADLSE Setup Tables"
                     ADLSERun: Page "ADLSE Run";
                 begin
                     ADLSERun.Run();
-                end;
-            }
-
-            action(RefreshPage)
-            {
-                ApplicationArea = All;
-                Caption = 'Refresh';
-                Tooltip = 'Refreshes the table values.';
-                Image = Refresh;
-
-                trigger OnAction()
-                begin
-                    CurrPage.Update();
                 end;
             }
 

@@ -70,6 +70,10 @@ page 82563 "ADLSE Run"
                 Caption = 'Clear execution log';
                 Tooltip = 'Removes the history of the export executions. This should be done periodically to free up storage space.';
                 Image = ClearLog;
+                Promoted = true;
+                PromotedIsBig = true;
+                PromotedCategory = Process;
+                PromotedOnly = true;
                 Enabled = LogsFound;
 
                 trigger OnAction()
@@ -79,6 +83,23 @@ page 82563 "ADLSE Run"
                     LogsFound := false;
                     ADLSERun.DeleteOldRuns(Rec."Table ID");
                     CurrPage.Update(false);
+                end;
+            }
+
+            action(RefreshPage)
+            {
+                ApplicationArea = All;
+                Caption = 'Refresh';
+                Tooltip = 'Refreshes the table values.';
+                Promoted = true;
+                PromotedIsBig = true;
+                PromotedCategory = Process;
+                PromotedOnly = true;
+                Image = Refresh;
+
+                trigger OnAction()
+                begin
+                    CurrPage.Update();
                 end;
             }
         }

@@ -137,7 +137,7 @@ page 82560 "ADLSE Setup"
             {
                 ApplicationArea = All;
                 Caption = 'Export manifests';
-                Tooltip = 'Starts the export of all manifests';
+                Tooltip = 'Starts the export of all manifests, this will create or update all *.cdm.json manifest in the root of the container including the deltas.manifest.cdm.json';
                 Promoted = true;
                 PromotedIsBig = true;
                 PromotedCategory = Process;
@@ -159,10 +159,6 @@ page 82560 "ADLSE Setup"
                 ApplicationArea = All;
                 Caption = 'Export this company';
                 Tooltip = 'Starts the export process by spawning different sessions for each table. The action is disabled in case there are export processes currently running, also in other companies.';
-                Promoted = true;
-                PromotedIsBig = true;
-                PromotedCategory = Process;
-                PromotedOnly = true;
                 Image = Start;
                 Enabled = not ExportInProgress;
 
