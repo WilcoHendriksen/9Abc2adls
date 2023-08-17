@@ -20,12 +20,17 @@ page 82563 "ADLSE Run"
             {
                 ShowCaption = false;
 
+                field("Company Name"; Rec."Company Name")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Companyname';
+                }
+
                 field(TableCaption; NameOfTable)
                 {
                     ApplicationArea = All;
                     Caption = 'Table';
                     Tooltip = 'Specifies the caption of the table whose data was exported.';
-                    Visible = not DisplayLogsForGivenTable;
                 }
 
                 field(State; Rec.State)
@@ -81,8 +86,7 @@ page 82563 "ADLSE Run"
 
     trigger OnInit()
     begin
-        Rec.SetRange("Company Name", CompanyName());
-        Rec.SetCurrentKey(Started);
+        Rec.SetCurrentKey("Company Name", "Table ID", Started);
         Rec.SetAscending(Started, false); // the last log at the top
     end;
 
@@ -96,13 +100,5 @@ page 82563 "ADLSE Run"
 
     var
         NameOfTable: Text;
-        DisplayLogsForGivenTable: Boolean;
         LogsFound: Boolean;
-
-
-    internal procedure SetDisplayForTable(TableID: Integer)
-    begin
-        Rec.SetRange("Table ID", TableID);
-        DisplayLogsForGivenTable := true;
-    end;
 }

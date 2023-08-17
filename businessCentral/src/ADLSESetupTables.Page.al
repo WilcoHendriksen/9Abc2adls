@@ -168,9 +168,9 @@ page 82561 "ADLSE Setup Tables"
 
                 trigger OnAction()
                 var
-                    ADLSERun2: Page "ADLSE Run2";
+                    ADLSERun: Page "ADLSE Run";
                 begin
-                    ADLSERun2.Run();
+                    ADLSERun.Run();
                 end;
             }
 

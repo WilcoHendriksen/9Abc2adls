@@ -55,7 +55,7 @@ table 82566 "ADLSE Run"
         key(Key2; "Table ID", "Company Name")
         {
         }
-        key(Key3; Started)
+        key(Key3; "Company Name", "Table ID", Started)
         { // sorting key
         }
     }
