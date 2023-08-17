@@ -99,8 +99,12 @@ codeunit 82592 "ADLSE Schedule"
             repeat
                 if Company.Name <> '' then begin
                     JobQueueEntry.ChangeCompany(Company.Name);
-                    if JobQueueEntry.FindJobQueueEntry(JobQueueEntry."Object Type to Run"::Codeunit, Codeunit::"ADLSE Execution") then
-                        JobQueueEntry.Delete();
+                    JobQueueEntry.Reset();
+                    JobQueueEntry.SetRange("Object Type to Run", JobQueueEntry."Object Type to Run"::Codeunit);
+                    JobQueueEntry.SetRange("Object ID to Run", Codeunit::"ADLSE Execution");
+                    if JobQueueEntry.FindSet() then begin
+                        JobQueueEntry.DeleteAll();
+                    end;
                 end;
             until Company.Next() = 0;
     end;
