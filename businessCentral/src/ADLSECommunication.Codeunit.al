@@ -220,37 +220,30 @@ codeunit 82562 "ADLSE Communication"
     end;
 
     [TryFunction]
-    procedure TryUpdateCdmJsons(EntityJsonNeedsUpdate: Boolean; ManifestJsonsNeedsUpdate: Boolean)
+    procedure TryUpdateCdmJsons()
     begin
-        UpdateCdmJsons(EntityJsonNeedsUpdate, ManifestJsonsNeedsUpdate);
+        UpdateCdmJsons();
     end;
 
-    local procedure UpdateCdmJsons(EntityJsonNeedsUpdate: Boolean; ManifestJsonsNeedsUpdate: Boolean)
+    local procedure UpdateCdmJsons()
     var
         ADLSESetup: Record "ADLSE Setup";
         ADLSEGen2Util: Codeunit "ADLSE Gen 2 Util";
+        ADLSECdmUtil: Codeunit "ADLSE CDM Util";
         LeaseID: Text;
         BlobPath: Text;
         BlobExists: Boolean;
     begin
         // update entity json
-        if EntityJsonNeedsUpdate then begin
-            BlobPath := GetBaseUrl() + StrSubstNo(CorpusJsonPathTxt, StrSubstNo(EntityManifestNameTemplateTxt, EntityName));
-            LeaseID := ADLSEGen2Util.AcquireLease(BlobPath, ADLSECredentials, BlobExists);
-            ADLSEGen2Util.CreateOrUpdateJsonBlob(BlobPath, ADLSECredentials, LeaseID, EntityJson);
-            ADLSEGen2Util.ReleaseBlob(BlobPath, ADLSECredentials, LeaseID);
-        end;
+        BlobPath := GetBaseUrl() + StrSubstNo(CorpusJsonPathTxt, StrSubstNo(EntityManifestNameTemplateTxt, EntityName));
+        LeaseID := ADLSEGen2Util.AcquireLease(BlobPath, ADLSECredentials, BlobExists);
+        EntityJson := ADLSECdmUtil.CreateEntityContent(TableID, FieldIdList);
+        ADLSEGen2Util.CreateOrUpdateJsonBlob(BlobPath, ADLSECredentials, LeaseID, EntityJson);
+        ADLSEGen2Util.ReleaseBlob(BlobPath, ADLSECredentials, LeaseID);
 
         // update manifest
-        if ManifestJsonsNeedsUpdate then begin
-            // Expected that multiple sessions that export data from different tables will be competing for writing to 
-            // manifest. Semaphore applied.
-            ADLSESetup.LockTable(true);
-            ADLSESetup.GetSingleton();
-
-            UpdateManifest(GetBaseUrl() + StrSubstNo(CorpusJsonPathTxt, DeltaCdmManifestNameTxt), 'deltas', "ADLSE CDM Format"::Csv);
-            Commit(); // to release the lock above
-        end;
+        UpdateManifest(GetBaseUrl() + StrSubstNo(CorpusJsonPathTxt, DeltaCdmManifestNameTxt), 'deltas', "ADLSE CDM Format"::Csv);
+        Commit(); // to release the lock above
     end;
 
     local procedure UpdateManifest(BlobPath: Text; Folder: Text; ADLSECdmFormat: Enum "ADLSE CDM Format")
