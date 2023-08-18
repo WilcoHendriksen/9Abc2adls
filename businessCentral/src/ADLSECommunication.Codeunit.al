@@ -266,7 +266,6 @@ codeunit 82562 "ADLSE Communication"
     var
         ADLSEGen2Util: Codeunit "ADLSE Gen 2 Util";
     begin
-        ADLSEGen2Util.DeleteData(GetBaseUrl() + '/' + StrSubstNo(EntityManifestNameTemplateTxt, DataLakeCompliantTableName), ADLSECredentials);
         ADLSEGen2Util.DeleteData(GetDeleteFolderUrl(DataLakeCompliantTableName), ADLSECredentials);
     end;
 }
