@@ -1,13 +1,10 @@
 trigger:
-- main
-
-pool:
-  vmImage: 'Windows-Latest'
-
-trigger:
   branches:
     include:
       - main
+
+pool:
+  vmImage: 'Windows-Latest'
 
 jobs:
 - job: Build
