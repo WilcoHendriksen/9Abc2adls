@@ -1,46 +1,29 @@
 {
-    "name": "9A bc2adls)",
+    "name": "9A bc2adls",
     "memoryLimit": "6G",
     "installApps": "",
     "installTestApps": "",
     "previousApps": "https://businesscentralapps.blob.core.windows.net/githubhelloworld/latest/apps.zip",
     "appFolders": "businessCentral",
     "testFolders": "test",
-    "installTestRunner": true,
+    "installTestRunner": false,
     "installTestFramework": false,
     "installTestLibraries": false,
     "installPerformanceToolkit": false,
     "doNotSignApps": true,
     "enableCodeCop": false,
     "enableAppSourceCop": false,
-    "enablePerTenantExtensionCop": true,
-    "enableUICop": true,
+    "enablePerTenantExtensionCop": false,
+    "enableUICop": false,
     "bcContainerHelperVersion": "latest",
     "additionalCountries": "",
     "vaultNameForLocal": "BuildVariables",
     "versions": [
         {
             "version": "ci",
-            "artifact": "//18.0.23013.24016/us",
+            "artifact": "//22.4.59114.59891/nl",
             "cacheImage": true,
-            "CreateRuntimePackages": true
-        },
-        {
-            "version": "current",
-            "artifact": "///us/Current",
-            "CreateRuntimePackages": true
-        },
-        {
-            "version": "cloud",
-            "artifact": "///us/Current"
-        },
-        {
-            "version": "nextmajor",
-            "artifact": "///us/NextMajor/{INSIDERSASTOKEN}"
-        },
-        {
-            "version": "nextminor",
-            "artifact": "///us/NextMinor/{INSIDERSASTOKEN}"
+            "CreateRuntimePackages": false
         }
     ]
 }
