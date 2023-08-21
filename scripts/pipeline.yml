@@ -1,0 +1,27 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'Windows-Latest'
+
+jobs:
+- job: Build
+  timeoutInMinutes: 300
+  variables:
+    build.clean: all
+    platform: x64
+    version: 'ci'
+    appBuild: '1.0'
+    appRevision: $(Build.BuildID)
+
+  steps:
+  - task: PowerShell@2
+    displayName: 'Run Pipeline'
+    env:
+      BcSaasRefreshToken: '$(BcSaasRefreshToken)'
+      EnvironmentName: '$(environmentName)'
+    inputs:
+      targetType: filePath
+      filePath: 'scripts\DevOps-Pipeline.ps1'
+      arguments: '-version $(version) -appBuild $(appBuild) -appRevision $(appRevision)'
+      failOnStderr: true
