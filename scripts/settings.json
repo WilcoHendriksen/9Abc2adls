@@ -17,12 +17,14 @@
     "enableUICop": false,
     "bcContainerHelperVersion": "latest",
     "vaultNameForLocal": "BuildVariables",
+    "ReUseContainer": true,
+    "KeepContainer": true,
     "versions": [
         {
             "version": "ci",
             "artifact": "//22.4.59114.59891/nl",
             "cacheImage": true,
-            "CreateRuntimePackages": true
+            "CreateRuntimePackages": false
         }
     ]
 }
