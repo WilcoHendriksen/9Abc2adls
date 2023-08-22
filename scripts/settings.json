@@ -22,7 +22,7 @@
             "version": "ci",
             "artifact": "//22.4.59114.59891/nl",
             "cacheImage": true,
-            "createRuntimePackages": false
+            "CreateRuntimePackages": false
         }
     ]
 }
