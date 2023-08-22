@@ -3,7 +3,6 @@
     "memoryLimit": "8G",
     "installApps": "",
     "installTestApps": "",
-    "previousApps": "https://businesscentralapps.blob.core.windows.net/githubhelloworld/latest/apps.zip",
     "appFolders": "businessCentral",
     "testFolders": "test",
     "installTestRunner": false,
