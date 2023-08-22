@@ -13,7 +13,7 @@ jobs:
     build.clean: all
     platform: x64
     version: 'ci'
-    appVersion: '2.0'
+    appVersion: '1.0'
     appBuild: $(Build.BuildID)
     appRevision: 0
     skipComponentGovernanceDetection: True
