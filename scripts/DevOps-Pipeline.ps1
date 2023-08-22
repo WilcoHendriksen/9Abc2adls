@@ -65,7 +65,9 @@ Run-AlPipeline @params `
     -previousApps $previousApps `
     -appFolders $appFolders `
     -testFolders $testFolders `
-    -doNotRunTests:$doNotRunTests `
+    -doNotRunTests $doNotRunTests `
+    -reUseContainer $reUseContainer `
+    -keepContainer $keepContainer `
     -testResultsFile $testResultsFile `
     -testResultsFormat 'JUnit' `
     -installTestRunner:$installTestRunner `
@@ -84,7 +86,7 @@ Run-AlPipeline @params `
     -AppSourceCopSupportedCountries $appSourceCopSupportedCountries `
     -additionalCountries $additionalCountries `
     -buildArtifactFolder $buildArtifactFolder `
-    -CreateRuntimePackages:$CreateRuntimePackages `
+    -createRuntimePackages:$createRuntimePackages `
     -appBuild $appBuild -appRevision $appRevision
 
 if ($environment -eq 'AzureDevOps') {
