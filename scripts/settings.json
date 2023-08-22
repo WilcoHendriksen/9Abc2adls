@@ -20,7 +20,7 @@
     "versions": [
         {
             "version": "ci",
-            "artifact": "//22.4.59114.59891/nl",
+            "artifact": "///nl/Latest",
             "cacheImage": true,
             "CreateRuntimePackages": false
         }
