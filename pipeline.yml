@@ -13,7 +13,7 @@ jobs:
     build.clean: all
     platform: x64
     version: 'ci'
-    appBuild: '1.0'
+    appBuild: '0'
     appRevision: $(Build.BuildID)
 
   steps:
