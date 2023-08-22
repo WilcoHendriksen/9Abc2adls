@@ -17,8 +17,6 @@
     "enableUICop": false,
     "bcContainerHelperVersion": "latest",
     "vaultNameForLocal": "BuildVariables",
-    "reUseContainer": true,
-    "keepContainer": true,
     "versions": [
         {
             "version": "ci",
