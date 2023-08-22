@@ -43,6 +43,13 @@ if ($refreshToken -and $environmentName) {
     }
 }
 
+$allTestResults = "testresults*.xml"
+$testResultsFile = Join-Path $baseFolder "TestResults.xml"
+$testResultsFiles = Join-Path $baseFolder $allTestResults
+if (Test-Path $testResultsFiles) {
+    Remove-Item $testResultsFiles -Force
+}
+
 Run-AlPipeline @params `
     -pipelinename $pipelineName `
     -containerName $containerName `
