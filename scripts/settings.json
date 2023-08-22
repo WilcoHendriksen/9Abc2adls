@@ -1,6 +1,6 @@
 {
-    "name": "9A bc2adls",
-    "memoryLimit": "6G",
+    "name": "9Abc2adls",
+    "memoryLimit": "8G",
     "installApps": "",
     "installTestApps": "",
     "previousApps": "https://businesscentralapps.blob.core.windows.net/githubhelloworld/latest/apps.zip",
@@ -16,14 +16,14 @@
     "enablePerTenantExtensionCop": false,
     "enableUICop": false,
     "bcContainerHelperVersion": "latest",
-    "additionalCountries": "",
+    "additionalCountries": "de",
     "vaultNameForLocal": "BuildVariables",
     "versions": [
         {
             "version": "ci",
             "artifact": "//22.4.59114.59891/nl",
             "cacheImage": true,
-            "CreateRuntimePackages": false
+            "CreateRuntimePackages": true
         }
     ]
 }
