@@ -11,12 +11,12 @@
     "installTestLibraries": false,
     "installPerformanceToolkit": false,
     "doNotSignApps": true,
+    "doNotRunTests": true,
     "enableCodeCop": false,
     "enableAppSourceCop": false,
     "enablePerTenantExtensionCop": false,
     "enableUICop": false,
     "bcContainerHelperVersion": "latest",
-    "additionalCountries": "de",
     "vaultNameForLocal": "BuildVariables",
     "versions": [
         {
