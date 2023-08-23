@@ -15,5 +15,7 @@ permissionset 82560 "ADLSE - Setup"
                   tabledata "ADLSE Deleted Record" = RD,
                   tabledata "ADLSE Current Session" = R,
                   tabledata "ADLSE Table Last Timestamp" = RID,
-                  tabledata "ADLSE Run" = RD;
+                  tabledata "ADLSE Run" = RD,
+                  tabledata "ADLSE Option" = RIMD,
+                  tabledata "ADLSE Company" = RIMD;
 }
