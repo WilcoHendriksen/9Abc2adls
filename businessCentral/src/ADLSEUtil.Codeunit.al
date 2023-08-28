@@ -319,9 +319,8 @@ codeunit 82564 "ADLSE Util"
                 Payload.Append(StrSubstNo(CommaPrefixedTok, FieldTextValue));
             FieldsAdded += 1;
         end;
-        if IsTablePerCompany(Rec.Number) then begin
+        if IsTablePerCompany(Rec.Number) then
             Payload.Append(StrSubstNo(CommaPrefixedTok, ConvertStringToText(CompanyID)));
-        end;
 
         Payload.AppendLine();
 
