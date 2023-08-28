@@ -288,7 +288,9 @@ codeunit 82564 "ADLSE Util"
         FieldsAdded: Integer;
         FieldTextValue: Text;
         Payload: TextBuilder;
+        CompanyID: Guid;
     begin
+        CompanyID := GetCompanyID();
         FieldsAdded := 0;
         if AddHeaders then begin
             foreach FieldID in FieldIdList do begin
@@ -318,10 +320,22 @@ codeunit 82564 "ADLSE Util"
             FieldsAdded += 1;
         end;
         if IsTablePerCompany(Rec.Number) then
-            Payload.Append(StrSubstNo(CommaPrefixedTok, ConvertStringToText(CompanyName())));
+            Payload.Append(StrSubstNo(CommaPrefixedTok, ConvertStringToText(CompanyID)));
+
         Payload.AppendLine();
 
         RecordPayload := Payload.ToText();
+    end;
+
+    procedure GetCompanyID(): Guid
+    var
+        Companies: record Company;
+    begin
+        Companies.SetRange(Name, CompanyName());
+        if Companies.FindFirst() then begin
+            exit(Companies.Id);
+        end;
+
     end;
 
     procedure IsTablePerCompany(TableID: Integer): Boolean
