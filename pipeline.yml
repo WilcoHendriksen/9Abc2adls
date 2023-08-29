@@ -69,6 +69,12 @@ jobs:
       script: |
         New-Item '$(Build.ArtifactStagingDirectory)\test.txt'
 
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifacts'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: output
+
 - job: publish
   dependsOn: Build
   condition: succeeded()
@@ -96,6 +102,6 @@ jobs:
         -storageAccountName '$(StorageAccount.Name)'
         -storageAccountKey '$(Library--StorageAccountKey)'
         -storageContainer '$(StorageAccount.Container)'
-        -fileToUpload '$(Build.ArtifactStagingDirectory)\$(AppFilename)'
+        -fileToUpload '$(Build.ArtifactStagingDirectory)\output\$(AppFilename)'
         -blobFileName '$(AppFilename)'
       failOnStderr: true
