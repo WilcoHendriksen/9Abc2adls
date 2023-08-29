@@ -68,7 +68,7 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        New-Item $(Build.ArtifactStagingDirectory)\Apps\9A business analytics_9A Azure Data Lake Storage Export_$(appVersion).$(appBuild).$(appRevision).app
+        New-Item '$(Build.ArtifactStagingDirectory)\Apps\9A business analytics_9A Azure Data Lake Storage Export_$(appVersion).$(appBuild).$(appRevision).app'
 
 - job: publish
   dependsOn: Build
