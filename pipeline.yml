@@ -88,6 +88,6 @@ jobs:
         -storageAccountName '$(StorageAccount.Name)'
         -storageAccountKey '$(Library--StorageAccountKey)'
         -storageContainer '$(StorageAccount.Container)'
-        -fileToUpload '$(System.DefaultWorkingDirectory)\output\Apps\$(appFilename)'
+        -fileToUpload '$(Build.ArtifactStagingDirectory)\output\Apps\$(appFilename)'
         -blobFileName '$(AppFilename)'
       failOnStderr: true
