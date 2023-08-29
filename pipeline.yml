@@ -63,12 +63,11 @@ jobs:
   #     failOnStderr: false
  
   - task: PowerShell@2
-    displayName: 'dummy'
-    condition: always()
+    displayName: 'create dummy file'
     inputs:
       targetType: 'inline'
       script: |
-        New-Item '$(Build.ArtifactStagingDirectory)\Apps\9A business analytics_9A Azure Data Lake Storage Export_$(appVersion).$(appBuild).$(appRevision).app'
+        New-Item '$(Build.ArtifactStagingDirectory)\test.txt'
 
 - job: publish
   dependsOn: Build
@@ -76,7 +75,8 @@ jobs:
   variables:
     StorageAccount.Name: 'birdssrvlibraryaccpblob'
     StorageAccount.Container: 'bc2adls'
-    AppFilename: 9A business analytics_9A Azure Data Lake Storage Export_$(appVersion).$(appBuild).$(appRevision).app
+    AppFilename: test.txt
+    #AppFilename: 9A business analytics_9A Azure Data Lake Storage Export_$(appVersion).$(appBuild).$(appRevision).app
   steps:
   - task: AzureKeyVault@2
     displayName: 'Load StorageAccount Key'
@@ -96,6 +96,6 @@ jobs:
         -storageAccountName '$(StorageAccount.Name)'
         -storageAccountKey '$(Library--StorageAccountKey)'
         -storageContainer '$(StorageAccount.Container)'
-        -fileToUpload '$(Build.ArtifactStagingDirectory)\output\Apps\$(appFilename)'
+        -fileToUpload '$(Build.ArtifactStagingDirectory)\$(AppFilename)'
         -blobFileName '$(AppFilename)'
       failOnStderr: true
