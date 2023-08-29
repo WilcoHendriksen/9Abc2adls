@@ -62,14 +62,14 @@ jobs:
       arguments: '-environment "AzureDevOps"'
       failOnStderr: false
 
-- job: publish prod
+- job: publish
   dependsOn: Build
   condition: succeeded()
   variables:
-    KeyVault.Subscription: 'birds-services-arm'
-    KeyVault.Name: 'birds-services-kv'
+    KeyVault.Subscription: 'birds-services-accp-arm'
+    KeyVault.Name: 'birds-services-accp-kv'
     KeyVault.SecretKey: 'Library--StorageAccountKey'
-    StorageAccount.Name: 'birdssrvlibraryblob'
+    StorageAccount.Name: 'birdssrvlibraryaccpblob'
     StorageAccount.Container: 'bc2adls'
     AppFilename: 9A business analytics_9A Azure Data Lake Storage Export_$(appVersion).$(appBuild).$(appRevision).app
   steps:
