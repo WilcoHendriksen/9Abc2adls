@@ -335,7 +335,6 @@ codeunit 82564 "ADLSE Util"
         if Companies.FindFirst() then begin
             exit(Companies.Id);
         end;
-
     end;
 
     procedure IsTablePerCompany(TableID: Integer): Boolean

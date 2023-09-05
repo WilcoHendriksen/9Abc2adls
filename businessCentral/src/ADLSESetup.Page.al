@@ -85,12 +85,6 @@ page 82560 "ADLSE Setup"
                         Tooltip = 'Specifies the maximum size of the upload for each block of data in MiBs. A large value will reduce the number of iterations to upload the data but may interfear with the performance of other processes running on this environment.';
                     }
 
-                    field("CDM data format"; Rec.DataFormat)
-                    {
-                        ApplicationArea = All;
-                        ToolTip = 'Specifies the format in which to store the exported data in the ''data'' CDM folder. The Parquet format is recommended for storing the data with the best fidelity.';
-                    }
-
                     field("Skip Timestamp Sorting On Recs"; Rec."Skip Timestamp Sorting On Recs")
                     {
                         ApplicationArea = All;

@@ -105,7 +105,7 @@ codeunit 82590 "ADLSE Import/Export config"
         Progress.Open(ProgressText, ProgressUpdate, TableNameToken);
 
         // itterate over table definitions
-        for i := 1 to JsonTableDefinitionsToken.AsArray().Count do begin
+        for i := 0 to JsonTableDefinitionsToken.AsArray().Count do begin
             if JsonTableDefinitionsToken.AsArray().Get(i, JsonTableDefinitionToken) then begin
                 if not JsonTableDefinitionToken.SelectToken('TableName', TableNameToken) then
                     Errors += CouldNotReadTableName;
@@ -131,9 +131,24 @@ codeunit 82590 "ADLSE Import/Export config"
                                 // if the column is found enabled it
                                 ALDSEField.Enabled := true;
                                 ALDSEField.Modify();
-                            end
-                            else
-                                Errors += StrSubstNo(ColumnIsNotFound, TableName, ColumnName);
+                            end else begin
+                                // not found on caption, try to find the id in the fieldtable by name and enable it
+                                FieldTable.Reset();
+                                FieldTable.SetRange(TableNo, TableTable.ID);
+                                FieldTable.SetRange(FieldName, ColumnName);
+                                if FieldTable.FindSet() then begin
+                                    ALDSEField.Reset();
+                                    ALDSEField.SetRange("Table ID", FieldTable.TableNo);
+                                    ALDSEField.SetRange("Field ID", FieldTable."No.");
+                                    if (StrLen(ColumnName) > 0) and ALDSEField.FindSet() then begin
+                                        // if the column is found enabled it
+                                        ALDSEField.Enabled := true;
+                                        ALDSEField.Modify();
+                                    end
+                                end
+                                else
+                                    Errors += StrSubstNo(ColumnIsNotFound, TableName, ColumnName);
+                            end;
                         end
                     else
                         Errors += CouldNotReadColumns;
