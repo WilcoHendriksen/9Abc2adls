@@ -6,7 +6,7 @@ codeunit 82566 "ADLSE CDM Util" // Refer Common Data Model https://docs.microsof
 
     var
         BlankArray: JsonArray;
-        CompanyFieldNameLbl: Label 'CompanyID';
+        CompanyFieldNameLbl: Label 'CompanyId';
         ExistingFieldCannotBeRemovedErr: Label 'The field %1 in the entity %2 is already present in the data lake and cannot be removed.', Comment = '%1: field name, %2: entity name';
         FieldDataTypeCannotBeChangedErr: Label 'The data type for the field %1 in the entity %2 cannot be changed.', Comment = '%1: field name, %2: entity name';
         RepresentsTableTxt: Label 'Represents the table %1', Comment = '%1: table caption';
@@ -118,20 +118,24 @@ codeunit 82566 "ADLSE CDM Util" // Refer Common Data Model https://docs.microsof
         FieldId: Integer;
         DataFormat: Text;
         AppliedTraits: JsonArray;
+        FieldName: Text;
     begin
         RecRef.Open(TableID);
         foreach FieldId in FieldIdList do begin
             FldRef := RecRef.Field(FieldId);
+            FieldName := FldRef.Name;
+            if FldRef.Number = 2000000000 then
+                FieldName := 'SystemId';
             GetCDMAttributeDetails(FldRef.Type, DataFormat, AppliedTraits);
             Result.Add(
                 CreateAttributeJson(
                     ADLSEUtil.GetDataLakeCompliantFieldName(FldRef.Name, FldRef.Number),
                     DataFormat,
-                    FldRef.Name,
+                    FieldName,
                     AppliedTraits));
         end;
         if ADLSEUtil.IsTablePerCompany(TableID) then begin
-            GetCDMAttributeDetails(FieldType::Text, DataFormat, AppliedTraits);
+            GetCDMAttributeDetails(FieldType::Guid, DataFormat, AppliedTraits);
             Result.Add(
                 CreateAttributeJson(GetCompanyFieldName(), DataFormat, GetCompanyFieldName(), AppliedTraits));
         end;
