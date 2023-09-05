@@ -49,7 +49,6 @@ codeunit 82591 "ADLSE Option"
                                 ADLSEOption.OptionCaption := OptionCaptions.Get(i);
                                 ADLSEOption.Insert();
                             End;
-
                         end;
                     until "Field".Next = 0;
                 end;
