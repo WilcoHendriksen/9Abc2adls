@@ -40,10 +40,10 @@ page 82591 "BirdsEnum"
                 field(FieldCaption; Rec.EnumCaption)
                 {
                     ApplicationArea = All;
-                    Caption = 'FieldCaption';
+                    Caption = 'OptionCaption';
                     Tooltip = 'The caption of the field.';
                 }
-                field(OptionMember; Rec.EnumIndex)
+                field(OptionIndex; Rec.EnumIndex)
                 {
                     ApplicationArea = All;
                     Caption = 'OptionIndex';

@@ -77,9 +77,9 @@ codeunit 82591 "BirdsEnum"
                         until ADLSETable.Next = 0;
                     end else
                         Message(PlsConfigureTablesTxt);
-                end else
-                    Message(PlsConfigureCompaniesTxt);
+                end;
             until ADLSECompany.Next() = 0;
-        end;
+        end else
+            Message(PlsConfigureCompaniesTxt);
     end;
 }

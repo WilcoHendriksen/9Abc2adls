@@ -36,20 +36,20 @@ page 82593 "BirdsEnumTranslation"
                 field(FieldCaption; Rec.Caption)
                 {
                     ApplicationArea = All;
-                    Caption = 'FieldCaption';
-                    Tooltip = 'The caption of the field.';
+                    Caption = 'OptionCaption';
+                    Tooltip = 'The option member caption.';
                 }
                 field(OptionIndex; Rec.Index)
                 {
                     ApplicationArea = All;
-                    Caption = 'OptionMember';
-                    Tooltip = 'The option members of the enumeration.';
+                    Caption = 'OptionIndex';
+                    Tooltip = 'The option member index.';
                 }
                 field(Value; Rec.Value)
                 {
                     ApplicationArea = All;
                     Caption = 'Value';
-                    Tooltip = 'The index of the option members of the enumeration.';
+                    Tooltip = 'The translated value of the option members.';
                 }
             }
         }
