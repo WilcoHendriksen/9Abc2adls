@@ -121,9 +121,9 @@ page 82560 "ADLSE Setup"
 
                 trigger OnAction()
                 var
-                    ADLSEOption: Page "ADLSE Option";
+                    BirdsEnum: Page "BirdsEnum";
                 begin
-                    ADLSEOption.Run();
+                    BirdsEnum.Run();
                 end;
             }
 

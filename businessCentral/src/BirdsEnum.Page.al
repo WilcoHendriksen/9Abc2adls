@@ -1,7 +1,7 @@
-page 82591 "ADLSE Option"
+page 82591 "BirdsEnum"
 {
     PageType = List;
-    SourceTable = "ADLSE Option";
+    SourceTable = "BirdsEnum";
     InsertAllowed = false;
     ModifyAllowed = false;
     DeleteAllowed = false;
@@ -25,42 +25,36 @@ page 82591 "ADLSE Option"
             repeater(Control1)
             {
                 Editable = false;
-                field(LanguageCode; Rec.LanguageCode)
-                {
-                    ApplicationArea = All;
-                    Caption = 'LanguageCode';
-                    Tooltip = 'The LanguageCode.';
-                }
-                field(Table; Rec.Table)
+                field(Table; Rec.SourceTable)
                 {
                     ApplicationArea = All;
                     Caption = 'Table';
                     Tooltip = 'The table in which the enum is found.';
                 }
-                field(Field; Rec.Field)
+                field(Field; Rec.ObjectName)
                 {
                     ApplicationArea = All;
                     Caption = 'Field';
                     Tooltip = 'The name of the field.';
                 }
-                field(FieldCaption; Rec.FieldCaption)
+                field(FieldCaption; Rec.EnumCaption)
                 {
                     ApplicationArea = All;
                     Caption = 'FieldCaption';
                     Tooltip = 'The caption of the field.';
                 }
-                field(OptionMember; Rec.OptionMember)
+                field(OptionMember; Rec.EnumIndex)
                 {
                     ApplicationArea = All;
-                    Caption = 'OptionMember';
+                    Caption = 'OptionIndex';
                     Tooltip = 'The option members of the enumeration.';
                 }
-                field(OptionCaption; Rec.OptionCaption)
-                {
-                    ApplicationArea = All;
-                    Caption = 'OptionCaptions';
-                    Tooltip = 'The option captions of the enumeration.';
-                }
+            }
+
+            part(Translations; "BirdsEnumTranslation")
+            {
+                ApplicationArea = All;
+                UpdatePropagation = Both;
             }
         }
     }
@@ -81,9 +75,9 @@ page 82591 "ADLSE Option"
 
                 trigger OnAction()
                 var
-                    ADLSEOption: Codeunit "ADLSE Option";
+                    BirdsEnum: Codeunit "BirdsEnum";
                 begin
-                    ADLSEOption.RefreshOptions(LanguageCodes);
+                    BirdsEnum.RefreshOptions(LanguageCodes);
                     CurrPage.Update();
                 end;
             }

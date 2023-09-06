@@ -16,6 +16,7 @@ permissionset 82560 "ADLSE - Setup"
                   tabledata "ADLSE Current Session" = R,
                   tabledata "ADLSE Table Last Timestamp" = RID,
                   tabledata "ADLSE Run" = RD,
-                  tabledata "ADLSE Option" = RIMD,
-                  tabledata "ADLSE Company" = RIMD;
+                  tabledata "ADLSE Company" = RIMD,
+                  tabledata "BirdsEnum" = RIMD,
+                  tabledata "BirdsEnumTranslation" = RIMD;
 }
