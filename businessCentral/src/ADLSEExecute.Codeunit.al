@@ -260,7 +260,7 @@ codeunit 82561 "ADLSE Execute"
         FieldIdList := CreateFieldListForTable(TableID);
         UpdatedLastTimestamp := ADLSETableLastTimestamp.GetUpdatedLastTimestamp(TableID);
         ADLSECommunication.Init(TableID, FieldIdList, UpdatedLastTimeStamp, EmitTelemetry);
-        ADLSECommunication.TryUpdateCdmJsons();
+        ADLSECommunication.UpdateCdmJsons();
     end;
 
     local procedure CreateFieldListForTable(TableID: Integer) FieldIdList: List of [Integer]

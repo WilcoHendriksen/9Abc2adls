@@ -219,13 +219,7 @@ codeunit 82562 "ADLSE Communication"
         end;
     end;
 
-    [TryFunction]
-    procedure TryUpdateCdmJsons()
-    begin
-        UpdateCdmJsons();
-    end;
-
-    local procedure UpdateCdmJsons()
+    procedure UpdateCdmJsons()
     var
         ADLSESetup: Record "ADLSE Setup";
         ADLSEGen2Util: Codeunit "ADLSE Gen 2 Util";
