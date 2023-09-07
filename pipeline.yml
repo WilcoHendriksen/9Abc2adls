@@ -1,0 +1,152 @@
+trigger:
+  branches:
+    include:
+      - development
+      - release
+
+pool:
+  vmImage: 'Windows-Latest'
+
+variables:
+  appVersion: '1.0'
+  appBuild: 0
+  appRevision: $(Build.BuildID)
+  artifactName: 'output'
+
+jobs:
+- job: Build
+  timeoutInMinutes: 300
+  variables:
+    build.clean: all
+    platform: x64
+    version: 'ci'
+    skipComponentGovernanceDetection: True
+
+  steps:
+  - task: PowerShell@2
+    displayName: 'Set BuildNumber'
+    inputs:
+      targetType: inline
+      script: 'Write-Host "##vso[build.updatebuildnumber]$(appVersion).$(appBuild).$(appRevision)"'
+
+  - task: PowerShell@2
+    displayName: 'Run Pipeline'
+    env:
+      BcSaasRefreshToken: '$(BcSaasRefreshToken)'
+      EnvironmentName: '$(environmentName)'
+    inputs:
+      targetType: filePath
+      filePath: 'scripts\DevOps-Pipeline.ps1'
+      arguments: '-version $(version) -appBuild $(appBuild) -appRevision $(appRevision)'
+      failOnStderr: true
+
+  - task: PublishTestResults@2
+    displayName: 'Publish Test Results'
+    condition: and(succeeded(),ne(variables['TestResults'],''))
+    inputs:
+      testResultsFormat: JUnit
+      testResultsFiles: '$(testResults)'
+      failTaskOnFailedTests: true
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifacts'
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      ArtifactName: $(artifactName)
+
+  - task: PowerShell@2
+    displayName: 'Cleanup'
+    condition: always()
+    inputs:
+      targetType: filePath
+      filePath: 'scripts\Cleanup.ps1'
+      arguments: '-environment "AzureDevOps"'
+      failOnStderr: false
+
+###  Keep these for development purposes
+  # - task: PowerShell@2
+  #   displayName: 'create dummy file'
+  #   inputs:
+  #     targetType: 'inline'
+  #     script: |
+  #       New-Item '$(Build.ArtifactStagingDirectory)\test.txt'
+
+  # - task: PublishBuildArtifacts@1
+  #   displayName: 'Publish Artifacts'
+  #   inputs:
+  #     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+  #     ArtifactName: $(artifactName)
+
+- job: publish_to_accp
+  dependsOn: Build
+  condition: and(succeeded(),eq(variables['Build.SourceBranch'], 'refs/heads/development'))
+  variables:
+    StorageAccount.Name: 'birdssrvlibraryaccpblob'
+    StorageAccount.Container: 'bc2adls'
+    AppFilename: 9A business analytics_9A Azure Data Lake Storage Export_$(appVersion).$(appBuild).$(appRevision).app
+
+  steps:
+  - task: DownloadBuildArtifacts@0
+    displayName: "Download Build Artifacts"
+    inputs:
+      artifactName: $(artifactName)
+      downloadPath: $(System.DefaultWorkingDirectory)
+
+  - task: AzureKeyVault@2
+    displayName: 'Load StorageAccount Key'
+    inputs:
+      azureSubscription: 'birds-services-accp-arm'
+      KeyVaultName: 'birds-services-accp-kv'
+      SecretsFilter: 'Library--StorageAccountKey'
+      RunAsPreJob: true
+
+  - task: PowerShell@2
+    displayName: 'publish to storage'      
+    inputs:
+      targetType: filePath
+      filePath: 'scripts\publish-file-to-storage.ps1'
+      arguments: 
+        >
+        -storageAccountName '$(StorageAccount.Name)'
+        -storageAccountKey '$(Library--StorageAccountKey)'
+        -storageContainer '$(StorageAccount.Container)'
+        -fileToUpload '$(System.DefaultWorkingDirectory)\$(artifactName)\Apps\$(AppFilename)'
+        -blobFileName '$(AppFilename)'
+      failOnStderr: true
+
+- job: publish_to_prod
+  dependsOn: Build
+  condition: and(succeeded(),eq(variables['Build.SourceBranch'], 'refs/heads/release'))
+  variables:
+    StorageAccount.Name: 'birdssrvlibraryblob'
+    StorageAccount.Container: 'bc2adls'
+    AppFilename: 9A business analytics_9A Azure Data Lake Storage Export_$(appVersion).$(appBuild).$(appRevision).app
+
+  steps:
+  - task: DownloadBuildArtifacts@0
+    displayName: "Download Build Artifacts"
+    inputs:
+      artifactName: $(artifactName)
+      downloadPath: $(System.DefaultWorkingDirectory)
+
+  - task: AzureKeyVault@2
+    displayName: 'Load StorageAccount Key'
+    inputs:
+      azureSubscription: 'birds-services-arm'
+      KeyVaultName: 'birds-services-kv'
+      SecretsFilter: 'Library--StorageAccountKey'
+      RunAsPreJob: true
+
+  - task: PowerShell@2
+    displayName: 'publish to storage'      
+    inputs:
+      targetType: filePath
+      filePath: 'scripts\publish-file-to-storage.ps1'
+      arguments: 
+        >
+        -storageAccountName '$(StorageAccount.Name)'
+        -storageAccountKey '$(Library--StorageAccountKey)'
+        -storageContainer '$(StorageAccount.Container)'
+        -fileToUpload '$(System.DefaultWorkingDirectory)\$(artifactName)\Apps\$(AppFilename)'
+        -blobFileName '$(AppFilename)'
+      failOnStderr: true
