@@ -161,8 +161,8 @@ page 82592 "ADLSE Schedule"
         RunOnFriday := true;
         RunOnSaturday := false;
         RunOnSunday := false;
-        TimeToRun := CurrentDateTime() + (60 * 1000); // in 1 minute
-        MinutesBetweenRuns := 15;
+        TimeToRun := CurrentDateTime() + (2 * 60 * 1000); // in 2 minute
+        MinutesBetweenRuns := 60;
     end;
 
     var
